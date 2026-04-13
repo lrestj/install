@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PacmanApps="font-manager cliphist evince foot fuzzel gvfs glxinfo galculator greetd greetd-tuigreet galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan breeze mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar lxqt-policykit wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols thunar thunar-archive-plugin nvidia-settings"
+PacmanApps="font-manager cliphist evince foot fuzzel gvfs glxinfo galculator greetd greetd-tuigreet galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan breeze mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar lxqt-policykit wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols thunar thunar-archive-plugin 
 
 AurApps="autofs bemoji bibata-cursor-theme waypaper" 
 
@@ -22,14 +22,79 @@ echo "################################"
 yay -S $AurApps &&
 
 echo
-echo "#######################################"
-echo "#  Kopíruji konfiguraci z repozitáře  #"
-echo "#######################################"
-git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git &&
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f
-echo -e "\n"
-sleep 4
+echo "##################################"
+echo "#  Na jaký počítač instalujete?  #"
+echo "#  Zbook = 1                     #"
+echo "#  Probook = 2                   #"
+echo "#  Mirantb = 3                   #"
+echo "##################################"
 
+while true; do
+    read -r -p " Vyberte 1/2/3: " answer
+    case $answer in
+        [1]* ) echo
+               echo "####################################"
+               echo "#                                  #"
+               echo "#  Probíhá konfigurace Zbook...    #"
+               echo "#                                  #"
+               echo "####################################"
+               sudo pacman -S nvidia-inst
+               nvidia-inst --prime
+               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME branch -m  main endeavourOS
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/voidlinux.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/voidlinux.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+        [2]* ) echo
+               echo "######################################"
+               echo "#                                    #"
+               echo "#  Probíhá konfigurace Probook...    #"
+               echo "#                                    #"
+               echo "######################################"
+               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+        [3]* ) echo
+               echo "######################################"
+               echo "#                                    #"
+               echo "#  Probíhá konfigurace Mirantb...    #"
+               echo "#                                    #"
+               echo "######################################"
+               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+         * ) echo "Vyberte 1, 2, nebo 3";;
+     esac
+done
+  
 echo "####################"
 echo "#  Nastavení swap  #"
 echo "####################"
@@ -53,11 +118,6 @@ echo "######################"
 sudo cp -f ~/.dotfiles/greetd/* /etc/greetd/
 sudo systemctl enable greetd.service
 
-#Nvidia prime
-#echo "Nastavuji Nvidia prime"
-#sleep 2
-#nvidia-inst --prime
-
 mkdir -p Public Templates Stažené Dokumenty Hudba Videa
 
 echo
@@ -69,12 +129,6 @@ cd $HOME/.dotfiles/install/
 git remote remove origin
 git remote add github git@github.com:lrestj/install.git
 git remote add gitlab git@gitlab.com:lrestj/install.git
-git config --global user.email "rest@seznam.cz"
-git config --global user.name "LrestJ"
-
-git --git-dir=/home/libor/.cfg.git/ --work-tree=/home/libor remote remove origin
-git --git-dir=/home/libor/.cfg.git/ --work-tree=/home/libor remote add github git@github.com:lrestj/probook.git
-git --git-dir=/home/libor/.cfg.git/ --work-tree=/home/libor remote add gitlab git@gitlab.com:lrestj/probook.git
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
 
