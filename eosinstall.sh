@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PacmanApps="font-manager cliphist evince foot fuzzel gvfs glxinfo galculator greetd greetd-tuigreet galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan breeze mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar lxqt-policykit wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols thunar thunar-archive-plugin 
+PacmanApps="font-manager cinnamon-translations cliphist evince foot fuzzel gvfs glxinfo galculator greetd greetd-tuigreet galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan breeze mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar lxqt-policykit wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv nemo vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols 
 
 AurApps="autofs bemoji bibata-cursor-theme waypaper" 
 
