@@ -50,6 +50,15 @@ sudo systemctl enable greetd.service
 
 mkdir -p Public Templates Stažené Dokumenty Hudba Videa
 
+git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
+cd $HOME/.dotfiles/install/
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+
+
 #Git remote repos
 echo "Konfigurace Git repozitářů"
 git --git-dir=/home/libor/.cfg.git/ --work-tree=/home/libor remote remove origin
