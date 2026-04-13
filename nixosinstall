@@ -24,7 +24,7 @@ while true; do
                echo "#  Probíhá konfigurace Zbook...    #"
                echo "#                                  #"
                echo "####################################"
-               git clone --bare https://github.com/lrestj/nixos.git $HOME/.cfg.git
+               git clone --bare -b nixos --single-branch https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/zbook/ 
                sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#zbook 
@@ -35,8 +35,8 @@ while true; do
                git config --global user.email "rest@seznam.cz"
                git config --global user.name "LrestJ"
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/nixos.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/nixos.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
                break;;
         [2]* ) echo
@@ -45,7 +45,7 @@ while true; do
                echo "#  Probíhá konfigurace Probook...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b nixos --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/probook/ 
                sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#probook

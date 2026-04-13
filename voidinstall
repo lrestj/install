@@ -33,7 +33,7 @@ while true; do
                echo "#                                  #"
                echo "####################################"
                sudo xbps-install -S nvidia
-               git clone --bare https://github.com/lrestj/voidlinux.git $HOME/.cfg.git
+               git clone --bare -b voidniri --single-branch https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -42,8 +42,8 @@ while true; do
                git config --global user.email "rest@seznam.cz"
                git config --global user.name "LrestJ"
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/voidlinux.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/voidlinux.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
                break;;
         [2]* ) echo
