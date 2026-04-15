@@ -91,7 +91,7 @@ git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
 cd $HOME/.dotfiles/install/
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
-git remove origin
+git remote remove origin
 git remote add github git@github.com:lrestj/install.git
 git remote add gitlab git@gitlab.com:lrestj/install.git
 git remote -v
