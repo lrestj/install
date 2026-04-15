@@ -118,7 +118,7 @@ echo "######################"
 sudo cp -f ~/.dotfiles/greetd/* /etc/greetd/
 sudo systemctl enable greetd.service
 
-mkdir -p Public Templates Stažené Dokumenty Hudba Videa
+mkdir -p Templates Stažené Dokumenty Hudba Videa
 
 echo
 echo "################################"

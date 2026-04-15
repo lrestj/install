@@ -115,7 +115,7 @@ sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/chronyd /var/service/
 sudo ln -s /etc/sv/greetd /var/service/
 
-mkdir Dokumenty Videa Hudba Stažené Public Templates
+mkdir Dokumenty Videa Hudba Stažené Templates
 
 git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
 cd $HOME/.dotfiles/install/
