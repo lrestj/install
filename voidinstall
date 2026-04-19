@@ -110,6 +110,7 @@ sudo ln -s /etc/sv/autofs /var/service/
 sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo rm /var/service/dhcpcd
 sudo ln -s /etc/sv/power-profiles-daemon /var/service/
+sudo ln -s /etc/sv/snooze-daily /var/service/
 sudo ln -s /etc/sv/snooze-weekly /var/service/
 sudo ln -s /etc/sv/cupsd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
