@@ -15,7 +15,6 @@ cargo install cargo-deb
 git clone https://github.com/YaLTeR/niri.git
 cd niri
 cargo deb
-
 sudo apt install ./target/debian/*.deb
 
 git clone https://github.com/Supreeeme/xwayland-satellite.git
@@ -29,6 +28,7 @@ echo "# Instalace balíčků  #"
 echo "######################"
 sudo apt install btop brightnessctl cliphist dunst fastfetch fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev lxqt-policykit nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg simple-scan swaybg swayidle swaylock udiskie udisks2 waybar wget wireplumber wl-clipboard wlsunset zenity
 
+cd $HOME
 mkdir Dokumenty Videa Hudba Stažené Templates
 
 echo    
