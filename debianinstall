@@ -81,12 +81,6 @@ echo "######################"
 exec $HOME/.local/bin/fuzzelcompile
 
 echo
-echo "######################"
-echo "#  Systemd-boot on   #"
-echo "######################"
-exec $HOME/.local/bin/grubrem
-
-echo
 echo "#####################"
 echo "#  Konec instalace  #"
 echo "#####################"
