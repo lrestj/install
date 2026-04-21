@@ -27,7 +27,7 @@ echo
 echo ######################
 echo # Instalace balíčků  #
 echo ######################
-sudo apt install btop brightnessctl cliphist dunst fastfetch fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev nemo network-manager-applet nfs-common pamixer papirus-icon-theme pavucontrol power-profiles-daemon qutebrowser resvg swaybg swayidle swaylock udiskie udisks2 waybar wget wireplumber wl-clipboard
+sudo apt install btop brightnessctl cliphist dunst fastfetch fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev nemo network-manager-applet nfs-common pamixer papirus-icon-theme pavucontrol power-profiles-daemon qutebrowser resvg swaybg swayidle swaylock udiskie udisks2 waybar wget wireplumber wl-clipboard zenity
 
 mkdir Dokumenty Videa Hudba Stažené Templates
 
