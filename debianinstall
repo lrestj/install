@@ -48,7 +48,7 @@ echo "###########################"
 echo "#  Nfs Synology settings  #"
 echo "###########################"
 sudo cp -v /etc/fstab /etc/fstab.bak
-sudo sudo cat $HOME/.dotfiles/nfs2fstab.txt >> /etc/fstab
+cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab.bak >> /dev/null
 
 echo
 echo "###################"
