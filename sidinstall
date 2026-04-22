@@ -1,0 +1,88 @@
+#!/bin/bash
+
+set -e
+
+echo "####################"
+echo "#  Instalace Niri  #"
+echo "####################"
+sleep 2
+
+mkdir -p $HOME/.local/src
+cd $HOME/.local/src
+sudo apt -y install git libxcb-cursor-dev rustup gcc clang \
+    libudev-dev libgbm-dev libxkbcommon-dev libegl1-mesa-dev \
+    libwayland-dev libinput-dev libdbus-1-dev libsystemd-dev \
+    libseat-dev libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev
+
+rustup default stable
+cargo install cargo-deb
+
+git clone https://github.com/YaLTeR/niri.git
+cd niri
+cargo deb
+sudo apt -y install ./target/debian/*.deb
+
+git clone https://github.com/Supreeeme/xwayland-satellite.git
+cd xwayland-satellite
+cargo deb
+sudo apt -y install ./target/debian/*.deb
+
+echo
+echo "######################"
+echo "# Instalace balíčků  #"
+echo "######################"
+sleep 2
+sudo apt -y install vim-gtk3 fuzzel btop brightnessctl cliphist dunst fastfetch firewalld firewall-applet fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev lxqt-policykit nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg scdoc simple-scan swaybg swayidle swaylock udiskie udisks2 waybar wget wireplumber wl-clipboard wlsunset zenity
+
+cd $HOME
+mkdir Dokumenty Videa Hudba Stažené Templates
+
+echo    
+echo "#########################"
+echo "#  Autologin & settings #"
+echo "#########################"
+git clone --bare -b sid --single-branch https://github.com/lrestj/probook $HOME/.cfg.git
+git --git-dir=$HOME/.cfg.git --work-tree=$HOME checkout -f
+sudo cp -rf $HOME/.dotfiles/getty@tty1.service.d /etc/systemd/system/
+sudo systemctl enable firewalld.service
+
+echo
+echo "###########################"
+echo "#  Nfs Synology settings  #"
+echo "###########################"
+sudo cp -v /etc/fstab /etc/fstab.bak
+cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab >> /dev/null
+
+echo
+echo "###################"
+echo "#  Grub settings  #"
+echo "###################"
+sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/grubhyperfluent/theme.txt' /etc/default/grub
+sudo update-grub
+
+echo
+echo "#############################"
+echo "#  Github & gitlab remotes  #"
+echo "#############################"
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+
+git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
+cd $HOME/.dotfiles/install/
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git remote -v
+
+echo
+echo "#########################"
+echo "#  Instalace kompletní  #"
+echo "#########################"
+
+###  END OF FILE  ###
