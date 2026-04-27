@@ -32,7 +32,7 @@ echo "######################"
 echo "# Instalace balíčků  #"
 echo "######################"
 sleep 2
-sudo apt -y install btop brightnessctl cliphist fastfetch firewalld firewall-applet fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev mako-notifier nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg scdoc simple-scan swaybg swayidle swaylock udiskie udisks2 vainfo waybar wget wireplumber wl-clipboard wlsunset zenity
+sudo apt -y install btop brightnessctl cliphist evince fastfetch firewalld firewall-applet fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev mako-notifier nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg ristretto scdoc simple-scan swaybg swayidle swaylock udiskie udisks2 vainfo waybar wget wireplumber wl-clipboard wlsunset youtubedl-gui zenity
 
 cd $HOME
 mkdir Dokumenty Videa Hudba Stažené Templates
