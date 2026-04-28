@@ -105,7 +105,7 @@ while true; do
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b debian --single-branch https://github.com/lrestj/mirantb.git $HOME/.cfg.git
+               git clone --bare -b debian --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
