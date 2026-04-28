@@ -41,7 +41,7 @@ sudo apt install \
     mako-notifier nemo network-manager-applet nfs-common  nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto \
-    scdoc simple-scan swaybg swayidle swaylock \
+    simple-scan swaybg swayidle swaylock \
     udiskie udisks2 vainfo \
     waybar wget wireplumber wl-clipboard wlsunset \
     youtubedl-gui zenity zoxide 
