@@ -9,7 +9,8 @@ sleep 2
 
 mkdir -p $HOME/.local/src
 cd $HOME/.local/src
-sudo apt -y install git libxcb-cursor-dev rustup gcc clang \
+sudo apt -y install \
+    git libxcb-cursor-dev rustup gcc clang \
     libudev-dev libgbm-dev libxkbcommon-dev libegl1-mesa-dev \
     libwayland-dev libinput-dev libdbus-1-dev libsystemd-dev \
     libseat-dev libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev
@@ -32,7 +33,18 @@ echo "######################"
 echo "# Instalace balíčků  #"
 echo "######################"
 sleep 2
-sudo apt -y install btop brightnessctl cliphist evince fastfetch firewalld firewall-applet fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev mako-notifier nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg ristretto scdoc simple-scan swaybg swayidle swaylock udiskie udisks2 vainfo waybar wget wireplumber wl-clipboard wlsunset youtubedl-gui zenity
+sudo apt -y install \
+    brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
+    firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \ 
+    galculator gawk geany git gvfs hplip-gui imagemagick jq \
+    libnotify-bin libreoffice libreoffice-gtk2 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
+    mako-notifier nemo network-manager-applet nfs-common  nwg-look \
+    pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
+    resvg ripgrep ristretto \
+    scdoc simple-scan swaybg swayidle swaylock \
+    udiskie udisks2 vainfo \
+    waybar wget wireplumber wl-clipboard wlsunset \
+    youtubedl-gui zenit zoxide 
 
 cd $HOME
 mkdir Dokumenty Videa Hudba Stažené Templates
