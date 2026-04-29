@@ -9,7 +9,8 @@ sleep 2
 
 mkdir -p $HOME/.local/src
 cd $HOME/.local/src
-sudo apt -y install git libxcb-cursor-dev rustup gcc clang \
+sudo apt -y install \
+    git libxcb-cursor-dev rustup gcc clang \
     libudev-dev libgbm-dev libxkbcommon-dev libegl1-mesa-dev \
     libwayland-dev libinput-dev libdbus-1-dev libsystemd-dev \
     libseat-dev libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev
@@ -32,17 +33,109 @@ echo "######################"
 echo "# Instalace balíčků  #"
 echo "######################"
 sleep 2
-sudo apt -y install btop brightnessctl cliphist fastfetch firewalld firewall-applet fish ffmpeg fd-find ripgrep zoxide imagemagick fonts-jetbrains-mono font-manager foot fzf galculator gawk geany git gvfs hplip-gui jq libnotify-bin libreoffice libreoffice-gtk3 libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev lxqt-policykit mako-notifier nemo network-manager-applet nfs-common  nwg-look pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser resvg scdoc simple-scan swaybg swayidle swaylock udiskie udisks2 waybar wget wireplumber wl-clipboard wlsunset zenity
+sudo apt -y install \
+    brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
+    firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
+    galculator gawk geany gparted gvfs hplip-gui imagemagick jq \
+    libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
+    mako-notifier nemo network-manager-applet nfs-common  nwg-look \
+    pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
+    resvg ripgrep ristretto \
+    simple-scan swaybg swayidle swaylock system-config-printer \
+    udiskie udisks2 vainfo \
+    waybar wget wireplumber wl-clipboard wlsunset \
+    youtubedl-gui zenity zoxide 
 
 cd $HOME
 mkdir Dokumenty Videa Hudba Stažené Templates
 
+echo
+echo "##################################"
+echo "#  Na jaký počítač instalujete?  #"
+echo "#  Zbook = 1                     #"
+echo "#  Probook = 2                   #"
+echo "#  Mirantb = 3                   #"
+echo "##################################"
+
+while true; do
+    read -r -n 1 -p " Vyberte 1/2/3: " answer
+    case $answer in
+        [1]* ) echo
+               echo "####################################"
+               echo "#                                  #"
+               echo "#  Probíhá konfigurace Zbook...    #"
+               echo "#                                  #"
+               echo "####################################"
+               # sudo xbps-install -S nvidia
+               git clone --bare -b debian --single-branch https://github.com/lrestj/zbook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               bash $HOME/.local/bin/bravedeb
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+        [2]* ) echo
+               echo "######################################"
+               echo "#                                    #"
+               echo "#  Probíhá konfigurace Probook...    #"
+               echo "#                                    #"
+               echo "######################################"
+               git clone --bare -b debian --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+        [3]* ) echo
+               echo "######################################"
+               echo "#                                    #"
+               echo "#  Probíhá konfigurace Mirantb...    #"
+               echo "#                                    #"
+               echo "######################################"
+               git clone --bare -b debian --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+               echo
+               echo "###################################"
+               echo "#  Konfigurace git repozitáře...  #"
+               echo "###################################"
+               git config --global user.email "rest@seznam.cz"
+               git config --global user.name "LrestJ"
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               break;;
+         * ) echo "Vyberte 1, 2, nebo 3";;
+     esac
+done
+
+git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
+cd $HOME/.dotfiles/install/
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git remote -v
+
 echo    
 echo "#########################"
-echo "#  Autologin & settings #"
+echo "#  Autologin & firewall #"
 echo "#########################"
-git clone --bare -b debian --single-branch https://github.com/lrestj/probook $HOME/.cfg.git
-git --git-dir=$HOME/.cfg.git --work-tree=$HOME checkout -f
 sudo cp -rf $HOME/.dotfiles/getty@tty1.service.d /etc/systemd/system/
 sudo systemctl enable firewalld.service
 
@@ -57,33 +150,15 @@ echo
 echo "###################"
 echo "#  Grub settings  #"
 echo "###################"
-sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/grubhyperfluent/theme.txt' /etc/default/grub
+sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
 sudo update-grub
 
 echo
-echo "#############################"
-echo "#  Github & gitlab remotes  #"
-echo "#############################"
-git config --global user.email "rest@seznam.cz"
-git config --global user.name "LrestJ"
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-
-git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
-cd $HOME/.dotfiles/install/
-git config --global user.email "rest@seznam.cz"
-git config --global user.name "LrestJ"
-git remote remove origin
-git remote add github git@github.com:lrestj/install.git
-git remote add gitlab git@gitlab.com:lrestj/install.git
-git remote -v
-
+echo "#################################"
+echo "#  Instalace balíčků ze zdroje  #"
+echo "#################################"
 echo
-echo "###################"
-echo "#  Instalace Vim  #"
-echo "###################"
-exec $HOME/.local/bin/vimcompile
+sleep 1
+bash $HOME/.local/bin/pkgsbuild
 
 ###  END OF FILE  ###
