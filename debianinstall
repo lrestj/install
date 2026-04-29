@@ -151,7 +151,9 @@ echo "###################"
 echo "#  Grub settings  #"
 echo "###################"
 sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
+sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
 sudo update-grub
+
 
 echo
 echo "#################################"
