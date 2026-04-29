@@ -13,7 +13,7 @@ sudo xbps-install -S void-repo-nonfree  &&
 sudo xbps-install -S intel-ucode
 
 # Installing pkgs
-sudo xbps-install -S 7zip nemo nemo-fileroller Waybar alsa-pipewire autofs baobab brave-browser breeze-icons brightnessctl btop chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf galculator geany glxinfo gparted grimshot gufw gvfs gvim hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel jq libreoffice-calc libreoffice-writer libreoffice-i18n-cs libreoffice-gnome libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv network-manager-applet nfs-utils niri noto-fonts-ttf noto-fonts-emoji nwg-look pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto simple-scan snooze swayidle swaylock tmux tumbler udiskie unzip vlc void-docs-browse void-live-audio wlsunset xdg-desktop-portal-gtk xdg-desktop-portal-gnome xdg-user-dirs xfce-polkit xhost xmirror xournalpp xtools xwayland-satellite xz yazi zenity zip
+sudo xbps-install -S 7zip nemo nemo-fileroller Waybar alsa-pipewire autofs baobab brave-browser breeze-icons brightnessctl btop chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf galculator geany glxinfo gparted grimshot gufw gvfs ncurses-devel hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel jq libreoffice-calc libreoffice-writer libreoffice-i18n-cs libreoffice-gnome libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv network-manager-applet nfs-utils niri noto-fonts-ttf noto-fonts-emoji nwg-look pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto simple-scan snooze swayidle swaylock tmux tumbler udiskie unzip vlc void-docs-browse void-live-audio wlsunset xdg-desktop-portal-gtk xdg-desktop-portal-gnome xdg-user-dirs xfce-polkit xhost xmirror xournalpp xtools xwayland-satellite xz yazi zenity zip
 
 echo
 echo "##################################"
@@ -147,6 +147,14 @@ echo "#  Dokončení instalace  #"
 echo "#                       #" 
 echo "#########################"
 echo
-exec $HOME/.local/bin/inreconf
+bash $HOME/.local/bin/inreconf
+
+echo
+echo "###################"
+echo "#                 #"
+echo "#  Instalace Vim  #"
+echo "#                 #"
+echo "###################"
+bash vimbuild
 
 ### END OF FILE ###
