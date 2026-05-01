@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -e
+set -e
 
 echo "##########################"
 echo "#  Instalace balíčků...  #"
@@ -14,7 +14,7 @@ sudo xbps-install -S intel-ucode
 
 # Installing pkgs
 sudo xbps-install -S \
-7zip alsa-pipewire autofs baobab brave-browser breeze-icons brightnessctl btop \
+7zip alsa-pipewire autofs baobab brave-browser breeze-icons brightnessctl btop base-devel \
 chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf \
 galculator geany glxinfo gparted grimshot gufw gvfs \
@@ -27,7 +27,7 @@ pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon \
 qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto \
 simple-scan snooze swayidle swaylock tmux tumbler \
 udiskie unzip vim vlc void-docs-browse void-live-audio \
-Waybar wlsunset xdg-desktop-portal-gnome \
+Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
 xdg-desktop-portal-gtk xdg-user-dirs xfce-polkit xhost xmirror \
 xournalpp xtools xwayland-satellite xz yazi zenity zip
 
