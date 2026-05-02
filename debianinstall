@@ -163,6 +163,34 @@ echo "#################################"
 echo
 sleep 1
 bash $HOME/.local/bin/pkgsbuild
-sudo apt remove ifupdown && sudo rm -r /etc/network/
+
+echo
+echo "########################"
+echo "#  NetworkManager fix  #"
+echo "########################"
+echo
+sleep 1
+sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.conf
+sudo rm -r /etc/network/
+sudo apt remove ifupdown 
+
+echo
+echo "#####################"
+echo "#  Konec instalace  #"
+echo "#####################"
+echo
+echo "####################################"
+echo "#  Restartovat do nového systému?  #"
+echo "####################################"
+while true; do
+    read -r -n 1 -p "Vyberte (A/N): " answer
+    case $answer in
+        [Aa]* ) echo -e "\n Restartuji..."
+                sleep 1
+                sudo reboot; break;;
+        [Nn]* ) exit;;
+        * ) echo -e "\nVyberte A nebo N.";;
+    esac
+done
 
 ###  END OF FILE  ###
