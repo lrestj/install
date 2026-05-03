@@ -1,0 +1,42 @@
+##### STUFF TO REMEMBER #####
+
+### My colors
+    cool white      #d6dae4
+    grey dark       #2e3440  rgba(46, 52, 64, 1)
+    grey light      #64727b  rgba(100, 114, 123, 1)
+    border purple   #8000ff  rgba(128, 0, 255, 1)
+    background      #2a2e32  rgba(42, 46, 50, 1)
+
+### Reduce swappiness
+    echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
+
+### Current script directory
+    "$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+### GTK4.0 dark color fix
+    [AdwStyleManager]
+    color-scheme=ADW_COLOR_SCHEME_PREFER_DARK
+
+### Fuzzel dmenu icons "...\0icon\x1f<icon.name>"
+    echo -en "Firefox\0icon\x1ffirefox" | fuzzel --dmenu
+
+### Foot rendring error in vim
+    foot bash -c "sleep 0.1; exec vim"
+
+### Alacritty Alt fix
+    let c='a'
+    while c <= 'z'
+      exec "set <A-".c.">=\e".c
+      exec "imap \e".c." <A-".c.">"
+      let c = nr2char(1+char2nr(c))
+    endw
+    set timeout ttimeoutlen=50
+
+### Authentication error:
+1 install xhost pkg
+2 run in terminal ╰─>$ xhost + local:
+
+### Default terminal for Nemo
+gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
+
+#### END OF FILE ##### 
