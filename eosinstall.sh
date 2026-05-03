@@ -63,7 +63,6 @@ echo "#  Instalace z repozitáře Aur  #"
 echo "################################"
 yay -S $AurApps &&
 
-while true; do
     case $answer in
         [1]* ) echo
                echo "####################################"
@@ -85,7 +84,7 @@ while true; do
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/voidlinux.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/voidlinux.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
+               ;;
         [2]* ) echo
                echo "######################################"
                echo "#                                    #"
@@ -104,7 +103,7 @@ while true; do
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
+               ;;
         [3]* ) echo
                echo "######################################"
                echo "#                                    #"
@@ -123,10 +122,9 @@ while true; do
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
+               ;;
          * ) echo "Vyberte 1, 2, nebo 3";;
      esac
-done
   
 echo "####################"
 echo "#  Nastavení swap  #"
