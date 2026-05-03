@@ -151,6 +151,8 @@ sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pip
 # sudo ln -s /etc/sv/greetd /var/service/
 # sudo sv down greetd
 
+sudo mkdir -p /etc/sysctl.d
+echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rfv $HOME/.dotfiles/autofs /etc/
 sudo ln -s /etc/sv/ufw /var/service/
 sudo ln -s /etc/sv/autofs /var/service/
