@@ -183,7 +183,7 @@ sudo cp -rf $HOME/.dotfiles/getty@tty1.service.d /etc/systemd/system/
 sudo systemctl enable firewalld.service
 sudo mkdir -p /etc/sysctl.d
 echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
-sudo cp -v /home/libor/.dotfiles/journald.conf.d /etc/systemd/
+sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
 
 echo
 echo "###########################"
