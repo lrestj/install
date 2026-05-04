@@ -81,7 +81,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#                                  #"
                echo "####################################"
                sudo xbps-install -S nvidia
-               git clone --bare -b voidniri https://github.com/lrestj/zbook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -100,7 +100,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Probook...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b voidniri https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -119,7 +119,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b voidniri https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
