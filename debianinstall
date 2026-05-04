@@ -114,6 +114,11 @@ mkdir -p Dokumenty Videa Hudba Stažené Templates
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               echo
+               echo "################################"
+               echo "#  Instalace prohlížeče Brave  #"
+               echo "################################"
+               bash $HOME/.local/bin/bravedeb
                ;;
         [2]* ) echo
                echo "######################################"
@@ -140,7 +145,7 @@ mkdir -p Dokumenty Videa Hudba Stažené Templates
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b debian https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b debian https://github.com/lrestj/mirantb.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -152,6 +157,11 @@ mkdir -p Dokumenty Videa Hudba Stažené Templates
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+               echo
+               echo "################################"
+               echo "#  Instalace prohlížeče Brave  #"
+               echo "################################"
+               bash $HOME/.local/bin/bravedeb
                ;;
          * ) echo "Vyberte 1, 2, nebo 3";;
      esac
