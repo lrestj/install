@@ -14,29 +14,29 @@ while true; do
     read -r -n 1 -p " Vyberte 1/2/3: " answer
     case $answer in
         [1]* ) echo
-               echo "####################################"
-               echo "#                                  #"
-               echo "#  Zvolili jste Zbook...           #"
-               echo "#                                  #"
-               echo "####################################"
+               echo "###########################"
+               echo "#                         #"
+               echo "#  Zvolili jste Zbook...  #"
+               echo "#                         #"
+               echo "###########################"
                echo
                sleep 4 
                break;;
         [2]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Probook...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Probook...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4 
                break;;
         [3]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Mirantb...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Mirantb...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4
                break;;
@@ -73,9 +73,9 @@ cargo deb
 sudo apt -y install ./target/debian/*.deb
 
 echo
-echo "######################"
-echo "# Instalace balíčků  #"
-echo "######################"
+echo "#######################"
+echo "#  Instalace balíčků  #"
+echo "#######################"
 sleep 2
 sudo apt -y install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
@@ -93,78 +93,78 @@ sudo apt -y install \
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
 
-    case $answer in
-        [1]* ) echo
-               echo "####################################"
-               echo "#                                  #"
-               echo "#  Probíhá konfigurace Zbook...    #"
-               echo "#                                  #"
-               echo "####################################"
-               # sudo xbps-install -S nvidia
-               git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               bash $HOME/.local/bin/bravedeb
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               echo
-               echo "################################"
-               echo "#  Instalace prohlížeče Brave  #"
-               echo "################################"
-               bash $HOME/.local/bin/bravedeb
-               ;;
-        [2]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Probíhá konfigurace Probook...    #"
-               echo "#                                    #"
-               echo "######################################"
-               git clone --bare -b debian https://github.com/lrestj/probook.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               ;;
-        [3]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Probíhá konfigurace Mirantb...    #"
-               echo "#                                    #"
-               echo "######################################"
-               git clone --bare -b debian https://github.com/lrestj/mirantb.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               echo
-               echo "################################"
-               echo "#  Instalace prohlížeče Brave  #"
-               echo "################################"
-               bash $HOME/.local/bin/bravedeb
-               ;;
-         * ) echo "Vyberte 1, 2, nebo 3";;
-     esac
+case $answer in
+    [1]* ) echo
+           echo "####################################"
+           echo "#                                  #"
+           echo "#  Probíhá konfigurace Zbook...    #"
+           echo "#                                  #"
+           echo "####################################"
+           # sudo xbps-install -S nvidia
+           git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           bash $HOME/.local/bin/bravedeb
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           echo
+           echo "################################"
+           echo "#  Instalace prohlížeče Brave  #"
+           echo "################################"
+           bash $HOME/.local/bin/bravedeb
+           ;;
+    [2]* ) echo
+           echo "######################################"
+           echo "#                                    #"
+           echo "#  Probíhá konfigurace Probook...    #"
+           echo "#                                    #"
+           echo "######################################"
+           git clone --bare -b debian https://github.com/lrestj/probook.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           ;;
+    [3]* ) echo
+           echo "######################################"
+           echo "#                                    #"
+           echo "#  Probíhá konfigurace Mirantb...    #"
+           echo "#                                    #"
+           echo "######################################"
+           git clone --bare -b debian https://github.com/lrestj/mirantb.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           echo
+           echo "################################"
+           echo "#  Instalace prohlížeče Brave  #"
+           echo "################################"
+           bash $HOME/.local/bin/bravedeb
+           ;;
+     * ) echo "Vyberte 1, 2, nebo 3";;
+esac
 
 git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
 cd $HOME/.dotfiles/install/
@@ -199,7 +199,6 @@ echo "###################"
 sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
 sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
 sudo update-grub
-
 
 echo
 echo "#################################"

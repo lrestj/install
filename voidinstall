@@ -14,29 +14,29 @@ while true; do
     read -r -n 1 -p " Vyberte 1/2/3: " answer
     case $answer in
         [1]* ) echo
-               echo "####################################"
-               echo "#                                  #"
-               echo "#  Zvolili jste Zbook...           #"
-               echo "#                                  #"
-               echo "####################################"
+               echo "###########################"
+               echo "#                         #"
+               echo "#  Zvolili jste Zbook...  #"
+               echo "#                         #"
+               echo "###########################"
                echo
                sleep 4 
                break;;
         [2]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Probook...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Probook...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4 
                break;;
         [3]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Mirantb...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Mirantb...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4
                break;;
