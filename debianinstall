@@ -53,7 +53,7 @@ sleep 2
 mkdir -p $HOME/.local/src
 cd $HOME/.local/src
 sudo apt -y install \
-    git libxcb-cursor-dev rustup gcc clang \
+    baobab git libxcb-cursor-dev rustup gcc clang \
     libudev-dev libgbm-dev libxkbcommon-dev libegl1-mesa-dev \
     libwayland-dev libinput-dev libdbus-1-dev libsystemd-dev \
     libseat-dev libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev
