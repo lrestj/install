@@ -44,26 +44,26 @@ while true; do
      esac
 done
 
-PacmanApps=" bemoji font-manager cinnamon-translations cliphist evince foot fuzzel gvfs glxinfo galculator greetd greetd-tuigreet galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan breeze mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar lxqt-policykit wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv nemo vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols 
+PacmanApps=" bemoji font-manager cinnamon-translations cliphist evince foot fuzzel gvfs glxinfo galculator galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv nemo vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols 
 
-AurApps="bibata-cursor-theme waypaper" 
+AurApps="bibata-cursor-theme waypaper xfce-polkit" 
 
 echo "##################################################"
 echo "#  Spouštím instalaci, můžete zrušit CTRL+C ...  #"
 echo "##################################################"
 sleep 4
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 echo
 echo "#################################"
 echo "#  Instalace z repozitáře Arch  #"
 echo "#################################"
-sudo pacman -S $PacmanApps &&
+sudo pacman -S --noconfirm $PacmanApps &&
 
 echo
 echo "################################"
 echo "#  Instalace z repozitáře Aur  #"
 echo "################################"
-yay -S $AurApps &&
+yay -S --noconfirm $AurApps &&
 
     case $answer in
         [1]* ) echo
@@ -160,13 +160,6 @@ git remote add github git@github.com:lrestj/install.git
 git remote add gitlab git@gitlab.com:lrestj/install.git
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
-
-echo
-echo "###################################"
-echo "#  Add $HOME/.local/bin to $PATH  #"
-echo "###################################"
-sleep 3
-EDITOR=vim sudoedit /etc/profile
 
 echo
 echo "#####################"
