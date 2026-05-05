@@ -81,8 +81,6 @@ case $answer in
            echo "#  Probíhá konfigurace Zbook...    #"
            echo "#                                  #"
            echo "####################################"
-           sudo pacman -S nvidia-inst
-           nvidia-inst --prime
            git clone --bare -b endeavourOS https://github.com/lrestj/probook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
@@ -92,8 +90,8 @@ case $answer in
            git config --global user.email "rest@seznam.cz"
            git config --global user.name "LrestJ"
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/voidlinux.git
-           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/voidlinux.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
            ;;
     [2]* ) echo
