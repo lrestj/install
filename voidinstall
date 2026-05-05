@@ -59,7 +59,7 @@ sudo xbps-install -S \
 7zip alsa-pipewire autofs baobab brave-browser brightnessctl btop base-devel \
 chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf \
-galculator geany glxinfo gparted grimshot gufw gvfs \
+galculator gcolor3 geany glxinfo gparted grimshot gufw gvfs \
 hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel \
 jq libreoffice-calc libreoffice-gnome libreoffice-i18n-cs libreoffice-writer \
 libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
