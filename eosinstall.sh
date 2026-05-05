@@ -44,26 +44,35 @@ while true; do
      esac
 done
 
-PacmanApps="font-manager cinnamon-translations cliphist evince foot fuzzel gvfs glxinfo galculator galculator jq network-manager-applet xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk udiskie simple-scan mako ttf-nerd-fonts-symbols ttf-hack-nerd awesome-terminal-fonts yazi fish waybar wlsunset geany grim libreoffice-fresh-cs qt6ct brightnessctl btop fastfetch papirus-icon-theme qutebrowser gparted mpv nemo vlc pamixer pdfarranger rclone qjackctl niri swaybg swayidle swaylock xournalpp zip p7zip wlsunset kitty kwalletmanager kwallet-pam nwg-look xorg-xwayland wayland-protocols" 
-
-AurApps="bemoji bibata-cursor-theme waypaper xfce-polkit" 
-
 echo "##################################################"
 echo "#  Spouštím instalaci, můžete zrušit CTRL+C ...  #"
 echo "##################################################"
 sleep 4
-sudo pacman -Syu --noconfirm
+sudo pacman -Syu --noconfirm \
+
 echo
 echo "#################################"
 echo "#  Instalace z repozitáře Arch  #"
 echo "#################################"
-sudo pacman -S --noconfirm $PacmanApps &&
+sudo pacman -S --noconfirm \
+awesome-terminal-fonts baobab brightnessctl btop \
+cinnamon-translations cliphist evince fastfetch fish font-manager foot fuzzel \
+galculator geany glxinfo gparted grim gvfs jq \
+kitty kwallet-pam kwalletmanager libreoffice-fresh-cs \
+mako mpv nemo network-manager-applet niri nwg-look \
+p7zip pamixer papirus-icon-theme pdfarranger \
+qjackctl qt6ct qutebrowser rclone \
+simple-scan swaybg swayidle swaylock \
+ttf-hack-nerd ttf-nerd-fonts-symbols udiskie vlc \
+waybar wayland-protocols wlsunset \
+xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk xwayland-satellite xournalpp \
+yazi zenity zip 
 
 echo
 echo "################################"
 echo "#  Instalace z repozitáře Aur  #"
 echo "################################"
-yay -S --noconfirm $AurApps &&
+yay -S --noconfirm bemoji bibata-cursor-theme waypaper xfce-polkit
 
     case $answer in
         [1]* ) echo
@@ -74,7 +83,7 @@ yay -S --noconfirm $AurApps &&
                echo "####################################"
                sudo pacman -S nvidia-inst
                nvidia-inst --prime
-               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b endeavourOS https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -82,7 +91,7 @@ yay -S --noconfirm $AurApps &&
                echo "###################################"
                git config --global user.email "rest@seznam.cz"
                git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME branch -m  main endeavourOS
+               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/voidlinux.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/voidlinux.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
@@ -93,7 +102,7 @@ yay -S --noconfirm $AurApps &&
                echo "#  Probíhá konfigurace Probook...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b endeavourOS https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -112,7 +121,7 @@ yay -S --noconfirm $AurApps &&
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b endeavourOS --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b endeavourOS https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
