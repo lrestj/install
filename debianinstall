@@ -77,7 +77,7 @@ echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo apt install xdg-desktop-portal-gnome --no-install-recommends
+sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
@@ -90,6 +90,8 @@ sudo apt -y install \
     udiskie udisks2 vainfo \
     waybar wget wireplumber wl-clipboard wlsunset \
     youtubedl-gui zenity zoxide 
+sudo apt -y install -t trixie-backports \
+    libreoffice libreoffice-gnome libreoffice-l10n-cs
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
