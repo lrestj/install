@@ -70,7 +70,7 @@ qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto \
 simple-scan snooze swayidle swaylock tmux tumbler \
 udiskie unzip vim vlc void-live-audio \
 Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
-xdg-desktop-portal-gtk xdg-user-dirs xfce-polkit xhost xmirror \
+xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
 xournalpp xtools xwayland-satellite xz yazi zenity zip
 
     case $answer in
