@@ -91,7 +91,7 @@ sudo apt -y install \
     waybar wget wireplumber wl-clipboard wlsunset \
     youtubedl-gui zenity zoxide 
 sudo apt -y install -t trixie-backports \
-    libreoffice libreoffice-gnome libreoffice-l10n-cs
+    libpixman-1-dev libreoffice libreoffice-gnome libreoffice-l10n-cs
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
