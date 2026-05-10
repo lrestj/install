@@ -77,6 +77,7 @@ echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
+sudo apt install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
