@@ -179,6 +179,7 @@ echo
 echo "###################"
 echo "#  Grub settings  #"
 echo "###################"
+sudo sed -i -e 's/console/gfxterm/g' /etc/default/grub
 sudo sed -i '6i"GRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt"' /etc/default/grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
