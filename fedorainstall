@@ -1,0 +1,205 @@
+#!/bin/bash
+
+set -e
+
+echo
+echo "##################################"
+echo "#  Na jaký počítač instalujete?  #"
+echo "#  Zbook = 1                     #"
+echo "#  Probook = 2                   #"
+echo "#  Mirantb = 3                   #"
+echo "##################################"
+
+while true; do
+    read -r -n 1 -p " Vyberte 1/2/3: " answer
+    case $answer in
+        [1]* ) echo
+               echo "###########################"
+               echo "#                         #"
+               echo "#  Zvolili jste Zbook...  #"
+               echo "#                         #"
+               echo "###########################"
+               echo
+               sleep 4 
+               break;;
+        [2]* ) echo
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Probook...  #"
+               echo "#                           #"
+               echo "#############################"
+               echo
+               sleep 4 
+               break;;
+        [3]* ) echo
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Mirantb...  #"
+               echo "#                           #"
+               echo "#############################"
+               echo
+               sleep 4
+               break;;
+         * ) echo "Vyberte 1, 2, nebo 3";;
+     esac
+done
+
+echo
+echo "#################"
+echo "#  COPR repos   #"
+echo "#################"
+sleep 2
+sudo dnf copr enable tofik/nwg-shell
+sudo dnf copr enable lihaohong/yazi
+
+echo
+echo "#######################"
+echo "#  Instalace balíčků  #"
+echo "#######################"
+sleep 2
+sudo dnf install xdg-desktop-portal-gnome
+sudo dnf install \
+    brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
+    firewall-applet firewalld fish foot fzf \
+    galculator gawk geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
+    libnotify libreoffice xcb-util-cursor libxcb-devel \
+    mako nemo network-manager-applet nfs-utils niri nwg-look \
+    pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
+    resvg ripgrep ristretto \
+    simple-scan swaybg swayidle swaylock system-config-printer \
+    udiskie udisks2 vainfo vim-X11 \
+    waybar wget wireplumber wl-clipboard wlsunset \
+    xfce-polkit yazi youtube-dl zenity zoxide 
+
+cd $HOME
+mkdir -p Dokumenty Videa Hudba Stažené Templates
+
+case $answer in
+    [1]* ) echo
+           echo "####################################"
+           echo "#                                  #"
+           echo "#  Probíhá konfigurace Zbook...    #"
+           echo "#                                  #"
+           echo "####################################"
+           # sudo xbps-install -S nvidia
+           git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           bash $HOME/.local/bin/bravedeb
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           echo
+           echo "################################"
+           echo "#  Instalace prohlížeče Brave  #"
+           echo "################################"
+           bash $HOME/.local/bin/bravedeb
+           ;;
+    [2]* ) echo
+           echo "######################################"
+           echo "#                                    #"
+           echo "#  Probíhá konfigurace Probook...    #"
+           echo "#                                    #"
+           echo "######################################"
+           git clone --bare -b fedora https://github.com/lrestj/probook.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           ;;
+    [3]* ) echo
+           echo "######################################"
+           echo "#                                    #"
+           echo "#  Probíhá konfigurace Mirantb...    #"
+           echo "#                                    #"
+           echo "######################################"
+           git clone --bare -b debian https://github.com/lrestj/mirantb.git $HOME/.cfg.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
+           echo
+           echo "###################################"
+           echo "#  Konfigurace git repozitáře...  #"
+           echo "###################################"
+           git config --global user.email "rest@seznam.cz"
+           git config --global user.name "LrestJ"
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
+           git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+           echo
+           echo "################################"
+           echo "#  Instalace prohlížeče Brave  #"
+           echo "################################"
+           bash $HOME/.local/bin/bravedeb
+           ;;
+     * ) echo "Vyberte 1, 2, nebo 3";;
+esac
+
+git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
+cd $HOME/.dotfiles/install/
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git remote -v
+
+echo    
+echo "#######################################"
+echo "#  Autologin & firewall & swappiness  #"
+echo "#######################################"
+sudo cp -rf $HOME/.dotfiles/getty@tty1.service.d /etc/systemd/system/
+sudo systemctl enable firewalld.service
+sudo mkdir -p /etc/sysctl.d
+echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
+sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
+gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
+sudo powerprofilesctl set performance
+
+echo
+echo "###########################"
+echo "#  Nfs Synology settings  #"
+echo "###########################"
+sudo cp -v /etc/fstab /etc/fstab.bak
+cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab >> /dev/null
+
+echo
+echo "###################"
+echo "#  Grub settings  #"
+echo "###################"
+sudo sed -i '6i"GRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt"' /etc/default/grub
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
+
+echo
+echo "#####################"
+echo "#  Konec instalace  #"
+echo "#####################"
+echo
+echo "####################################"
+echo "#  Restartovat do nového systému?  #"
+echo "####################################"
+while true; do
+    read -r -n 1 -p "Vyberte (A/N): " answer
+    case $answer in
+        [Aa]* ) echo -e "\n Restartuji..."
+                sleep 1
+                sudo reboot; break;;
+        [Nn]* ) exit;;
+        * ) echo -e "\nVyberte A nebo N.";;
+    esac
+done
+
+###  END OF FILE  ###
