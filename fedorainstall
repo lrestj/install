@@ -57,7 +57,6 @@ echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo dnf install xdg-desktop-portal-gnome
 sudo dnf install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish foot fzf \
@@ -69,7 +68,7 @@ sudo dnf install \
     simple-scan swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo vim-X11 \
     waybar wget wireplumber wl-clipboard wlsunset \
-    xfce-polkit yazi youtube-dl zenity zoxide 
+    xdg-desktop-portal-gnome xfce-polkit yazi youtube-dl zenity zoxide 
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
@@ -180,9 +179,9 @@ echo "###################"
 echo "#  Grub settings  #"
 echo "###################"
 sudo sed -i -e 's/console/gfxterm/g' /etc/default/grub
-sudo sed -i '6i"GRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt"' /etc/default/grub
-sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+sudo sed -i '6iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
 sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
 echo
 echo "#####################"
