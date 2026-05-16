@@ -56,19 +56,19 @@ echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
-sleep 2
+sudo dnf install microcode_ctlsleep 2
 sudo dnf install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish foot fzf \
     galculator gawk gcc geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
-    libnotify libreoffice xcb-util-cursor libxcb-devel \
+    libnotify libreoffice libva-intel-media-driver libxcb-devel \
     mako nemo network-manager-applet nfs-utils niri nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
     waybar wayland-devel wayland-protocols-devel wget wireplumber wl-clipboard wlsunset \
-    xdg-desktop-portal-gnome xfce-polkit yazi youtube-dl zenity zoxide 
+    xcb-util-cursor xdg-desktop-portal-gnome xfce-polkit yazi youtube-dl zenity zoxide 
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
@@ -189,6 +189,14 @@ echo "#  Konec instalace  #"
 echo "#####################"
 echo
 bash vimbuild
+
+echo
+echo "#####################"
+echo "#  Intel Microcode  #"
+echo "#####################"
+echo
+sudo dnf install microcode_ctl
+sudo dracut -f
 
 echo
 echo "#####################"
