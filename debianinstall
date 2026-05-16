@@ -90,8 +90,6 @@ sudo apt -y install \
     udiskie udisks2 vainfo \
     waybar wget wireplumber wl-clipboard wlsunset \
     youtubedl-gui zenity zoxide 
-sudo apt -y install -t trixie-backports \
-    libpixman-1-dev libreoffice libreoffice-gnome libreoffice-l10n-cs
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
@@ -103,7 +101,6 @@ case $answer in
            echo "#  Probíhá konfigurace Zbook...    #"
            echo "#                                  #"
            echo "####################################"
-           # sudo xbps-install -S nvidia
            git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            bash $HOME/.local/bin/bravedeb
@@ -222,6 +219,13 @@ sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.
 sudo rm -r /etc/network/
 sudo apt -y remove ifupdown 
 sudo powerprofilesctl set performance
+
+# Nvidia install to Zbook
+case $answer in
+    [1]* ) bash /home/libor/.local/bin/nvdinstall
+           break;;
+    * ) exit;;
+esac
 
 echo
 echo "#####################"
