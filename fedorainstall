@@ -45,24 +45,22 @@ while true; do
 done
 
 echo
-echo "#################"
-echo "#  COPR repos   #"
-echo "#################"
+echo "########################"
+echo "#  Copr & Brave repos  #"
+echo "########################"
 sleep 2
 sudo dnf copr enable tofik/nwg-shell -y
 sudo dnf copr enable lihaohong/yazi -y  
 sudo dnf copr enable yalter/niri -y  
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo -y
 
 echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo dnf install dnf-plugins-core -y
-sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo -y
-sudo dnf install brave-browser -y
 sudo dnf install -y \
-    brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
+    brave-browser brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish foot fzf \
     galculator gawk gcc geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
     libnotify libreoffice libva-intel-media-driver libxcb-devel \
@@ -84,10 +82,9 @@ case $answer in
            echo "#  Probíhá konfigurace Zbook...    #"
            echo "#                                  #"
            echo "####################################"
-           # sudo xbps-install -S nvidia
+           bash $HOME/.local/bin/nvfedorainst
            git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-           bash $HOME/.local/bin/bravedeb
            echo
            echo "###################################"
            echo "#  Konfigurace git repozitáře...  #"
@@ -98,11 +95,6 @@ case $answer in
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-           echo
-           echo "################################"
-           echo "#  Instalace prohlížeče Brave  #"
-           echo "################################"
-           bash $HOME/.local/bin/bravedeb
            ;;
     [2]* ) echo
            echo "######################################"
@@ -141,11 +133,6 @@ case $answer in
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-           echo
-           echo "################################"
-           echo "#  Instalace prohlížeče Brave  #"
-           echo "################################"
-           bash $HOME/.local/bin/bravedeb
            ;;
      * ) echo "Vyberte 1, 2, nebo 3";;
 esac
