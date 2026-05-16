@@ -49,18 +49,18 @@ echo "#################"
 echo "#  COPR repos   #"
 echo "#################"
 sleep 2
-sudo dnf copr enable tofik/nwg-shell
-sudo dnf copr enable lihaohong/yazi
+sudo dnf copr enable tofik/nwg-shell -y
+sudo dnf copr enable lihaohong/yazi -y  
 
 echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo dnf install dnf-plugins-core
-sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-sudo dnf install brave-browser
-sudo dnf install \
+sudo dnf install dnf-plugins-core -y
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo -y
+sudo dnf install brave-browser -y
+sudo dnf install -y \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish foot fzf \
     galculator gawk gcc geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
@@ -198,7 +198,7 @@ echo "#####################"
 echo "#  Intel Microcode  #"
 echo "#####################"
 echo
-sudo dnf install microcode_ctl
+sudo dnf install microcode_ctl -y
 sudo dracut -f
 
 echo
