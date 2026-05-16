@@ -56,7 +56,10 @@ echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
-sudo dnf install microcode_ctlsleep 2
+sleep 2
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo dnf install brave-browser
 sudo dnf install \
     brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish foot fzf \
