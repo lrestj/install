@@ -65,7 +65,7 @@ sudo dnf install -y \
     firewall-applet firewalld fish foot fzf \
     galculator gawk gcc geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
     libnotify libreoffice libva-intel-media-driver libxcb-devel \
-    mako nemo network-manager-applet nfs-utils niri nwg-look \
+    mako nemo network-manager-applet ncurses-devel nfs-utils niri nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
@@ -186,12 +186,7 @@ sudo sed -i '6iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/de
 sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-echo
-echo "#####################"
-echo "#  Konec instalace  #"
-echo "#####################"
-echo
-bash vimbuild
+bash $HOME/.local/bin/vimbuild
 
 echo
 echo "#####################"
@@ -199,6 +194,7 @@ echo "#  Intel Microcode  #"
 echo "#####################"
 echo
 sudo dnf install microcode_ctl -y
+echo "Dokončování instalace..."
 sudo dracut -f
 
 echo
