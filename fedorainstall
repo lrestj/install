@@ -82,8 +82,7 @@ case $answer in
            echo "#  Probíhá konfigurace Zbook...    #"
            echo "#                                  #"
            echo "####################################"
-           bash $HOME/.local/bin/nvfedorainst
-           git clone --bare -b debian https://github.com/lrestj/zbook.git $HOME/.cfg.git
+           git clone --bare -b fedora https://github.com/lrestj/zbook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
            echo "###################################"
@@ -182,6 +181,14 @@ echo "#  Intel Microcode  #"
 echo "#####################"
 echo
 sudo dnf install microcode_ctl -y
+
+# Nvidia for Zbook
+case $answer in
+    [1]* ) echo -e "\n Instalace NVIDIA..."
+           sleep 1
+           bash $HOME/.local/bin/nvfedorainst
+    * ) exit;;
+esac
 echo "Dokončování instalace..."
 sudo dracut -f
 
