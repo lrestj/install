@@ -68,7 +68,7 @@ sudo dnf install -y \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
-    udiskie udisks2 vainfo \
+    terminus-fonts-console udiskie udisks2 vainfo \
     waybar wayland-devel wayland-protocols-devel wget wireplumber wl-clipboard wlsunset \
     xcb-util-cursor xdg-desktop-portal-gnome xfce-polkit yazi youtube-dl zenity zoxide 
 
@@ -156,6 +156,7 @@ echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
 gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
 sudo powerprofilesctl set performance
+sudo cp -fv /home/libor/.dotfiles/vconsole.conf /etc/
 
 echo
 echo "###########################"
