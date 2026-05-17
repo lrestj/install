@@ -7,6 +7,11 @@
     border purple   #8000ff  rgba(128, 0, 255, 1)
     background      #2a2e32  rgba(42, 46, 50, 1)
 
+### Fedora blaclist modules
+/etc/modprobe.d/blaclist.conf
+blacklist cdc_mbim
+blacklist nouveau
+
 ### Reduce swappiness
     echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 
