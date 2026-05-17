@@ -45,28 +45,18 @@ while true; do
 done
 
 echo
-echo "########################"
-echo "#  Copr & Brave repos  #"
-echo "########################"
-sleep 2
-sudo dnf copr enable tofik/nwg-shell -y
-sudo dnf copr enable lihaohong/yazi -y  
-sudo dnf copr enable yalter/niri -y  
-sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo -y
-
-echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo dnf install -y \
-    brave-browser brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd-find ffmpeg \
+sudo zypper install \
+    brave-browser brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
     firewall-applet firewalld fish foot fzf \
     galculator gawk gcc geany gparted gvfs hplip-gui ImageMagick jq jetbrains-mono-fonts \
     libnotify libreoffice libva-intel-media-driver libxcb-devel \
-    mako nemo network-manager-applet ncurses-devel nfs-utils niri nwg-look \
-    pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
-    resvg ripgrep ristretto \
+    mako make nemo NetworkManager-applet ncurses-devel nfs-client niri nwg-look \
+    opi pamixer papirus-icon-theme pavucontrol power-profiles-daemon \
+    rqt6ct qutebrowse resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
     terminus-fonts-console udiskie udisks2 vainfo \
     waybar wayland-devel wayland-protocols-devel wget wireplumber wl-clipboard wlsunset \
@@ -156,7 +146,6 @@ echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
 gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
 sudo powerprofilesctl set performance
-sudo cp -fv /home/libor/.dotfiles/vconsole.conf /etc/
 
 echo
 echo "###########################"
@@ -165,33 +154,7 @@ echo "###########################"
 sudo cp -v /etc/fstab /etc/fstab.bak
 cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab >> /dev/null
 
-echo
-echo "###################"
-echo "#  Grub settings  #"
-echo "###################"
-sudo sed -i -e 's/console/gfxterm/g' /etc/default/grub
-sudo sed -i '6iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
-sudo cp -fv $HOME/.dotfiles/40_custom /etc/grub.d/
-sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-
 bash $HOME/.local/bin/vimbuild
-
-echo
-echo "#####################"
-echo "#  Intel Microcode  #"
-echo "#####################"
-echo
-sudo dnf install microcode_ctl -y
-
-# Nvidia for Zbook
-case $answer in
-    [1]* ) echo -e "\n Instalace NVIDIA..."
-           sleep 1
-           bash $HOME/.local/bin/nvfedorainst
-    * ) exit;;
-esac
-echo "Dokončování instalace..."
-sudo dracut -f
 
 echo
 echo "#####################"
