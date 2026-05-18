@@ -155,8 +155,6 @@ echo "###########################"
 sudo cp -v /etc/fstab /etc/fstab.bak
 cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab >> /dev/null
 
-bash $HOME/.local/bin/vimbuild
-
 case $answer in
     [1]* ) echo
            echo "###########################"
