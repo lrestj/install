@@ -58,7 +58,7 @@ sudo zypper install \
     opi pamixer papirus-icon-theme pavucontrol power-profiles-daemon \
     qutebrowser qt6ct resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
-    consoleet-terminus-fonts udiskie udisks2 \
+    terminus-bitmap-fonts udiskie udisks2 \
     waybar wayland-devel wayland-protocols-devel wget wireplumber wl-clipboard wlsunset \
     xcb-util-cursor xdg-desktop-portal-gnome yazi youtube-dl zenity zoxide 
 
