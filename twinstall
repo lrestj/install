@@ -50,8 +50,8 @@ echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
 sudo zypper install \
-    brave-browser brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
-    firewall-applet firewalld fish foot fzf \
+    baobab brave-browser brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
+    firewall-applet firewalld fish font-manager foot fzf \
     galculator gawk gcc geany gparted gvfs hplip ImageMagick jq jetbrains-mono-fonts \
     libqt5-qtwayland libreoffice libxcb-devel \
     mako make nemo NetworkManager-applet ncurses-devel nfs-client niri nwg-look \
@@ -167,10 +167,11 @@ esac
 
 echo
 echo "#####################"
-echo "#  Instalace Brave  #"
+echo "#  Instalace z Opi  #"
 echo "#####################"
 echo
 opi brave
+opi galculator
 echo
 echo "#####################"
 echo "#  Konec instalace  #"
