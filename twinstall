@@ -53,7 +53,7 @@ sudo zypper install \
     baobab brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
     firewall-applet firewalld fish font-manager foot fzf \
     gawk gcc geany gparted gvfs hplip ImageMagick jq jetbrains-mono-fonts \
-    libqt5-qtwayland libreoffice libxcb-devel \
+    libqt5-qtwayland libreoffice-gtk3 libxcb-devel \
     mako make nemo NetworkManager-applet ncurses-devel nfs-client niri nwg-look \
     opi pamixer papirus-icon-theme pavucontrol power-profiles-daemon \
     qutebrowser qt6ct resvg ripgrep ristretto \
