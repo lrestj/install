@@ -91,7 +91,7 @@ case $answer in
            echo "#  Probíhá konfigurace Probook...    #"
            echo "#                                    #"
            echo "######################################"
-           git clone --bare -b fedora https://github.com/lrestj/probook.git $HOME/.cfg.git
+           git clone --bare -b tumbleweed https://github.com/lrestj/probook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
            echo "###################################"
@@ -110,7 +110,7 @@ case $answer in
            echo "#  Probíhá konfigurace Mirantb...    #"
            echo "#                                    #"
            echo "######################################"
-           git clone --bare -b debian https://github.com/lrestj/mirantb.git $HOME/.cfg.git
+           git clone --bare -b tumbleweed https://github.com/lrestj/mirantb.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
            echo "###################################"
