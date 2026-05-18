@@ -157,6 +157,22 @@ cat $HOME/.dotfiles/nfs2fstab.txt | sudo tee -a /etc/fstab >> /dev/null
 
 bash $HOME/.local/bin/vimbuild
 
+case $answer in
+    [1]* ) echo
+           echo "###########################"
+           echo "#  Nvidia driver install  #"
+           echo "###########################"
+           sudo zypper install -y nvidia-driver-G06-kmp-meta
+           break;;
+    * ) exit;;
+esac
+
+echo
+echo "#####################"
+echo "#  Instalace Brave  #"
+echo "#####################"
+echo
+opi brave
 echo
 echo "#####################"
 echo "#  Konec instalace  #"
