@@ -165,7 +165,7 @@ opi -n galculator
 
 # Vim build
 bash $HOME/.local/bin/vimbuild
-sudo zypper rm -y --clean-deps vim dnf* btrfs* || true
+sudo zypper rm -y --clean-deps alacritty vim dnf* btrfs* || true
 
 case $answer in
     [1]* ) echo
