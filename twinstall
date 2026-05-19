@@ -164,8 +164,8 @@ opi -n brave
 opi -n galculator
 
 # Vim build
-bash $HOME/.local/bin/vimupd
-sudo zypper rm --clean-deps vim dnf* btrfs* || true
+bash $HOME/.local/bin/vimbuild
+sudo zypper rm -y --clean-deps vim dnf* btrfs* || true
 
 case $answer in
     [1]* ) echo
