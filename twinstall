@@ -165,14 +165,14 @@ opi -n galculator
 
 # Vim build
 bash $HOME/.local/bin/vimupd
-sudo zypper rm --clean-deps vim || true
+sudo zypper rm --clean-deps vim dnf* btrfs* || true
 
 case $answer in
     [1]* ) echo
            echo "###########################"
            echo "#  Nvidia driver install  #"
            echo "###########################"
-           sudo zypper install nvidia-driver-G06-kmp-meta
+           sudo zypper install -yl nvidia-driver-G06-kmp-meta
            ;;
     * ) ;;
 esac
