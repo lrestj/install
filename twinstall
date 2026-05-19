@@ -147,6 +147,7 @@ sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
 gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
 sudo powerprofilesctl set performance
 sudo cp -r /home/libor/.local/share/icons/Bibata-Modern-Classic /usr/share/icons/
+sudo sed -i -e 's/FONT=.*/FONT=ter-222b/g' /etc/vconsole.conf
 
 echo
 echo "###########################"
