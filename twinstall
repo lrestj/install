@@ -51,16 +51,16 @@ echo "#######################"
 sleep 2
 sudo zypper install \
     avahi baobab brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
-    firewall-applet firewalld fish font-manager foot fzf \
+    firewall-applet firewalld fish font-manager foot fuzzel fzf \
     gawk gcc geany gparted gvfs hplip ImageMagick jq jetbrains-mono-fonts \
     libqt5-qtwayland libreoffice-gtk3 libxcb-devel \
     mako make nemo NetworkManager-applet ncurses-devel nfs-client niri nwg-look \
-    opi pamixer papirus-icon-theme pavucontrol power-profiles-daemon \
+    opi pamixer papirus-icon-theme pavucontrol polkit-gnome power-profiles-daemon \
     qutebrowser qt6ct resvg ripgrep ristretto \
     simple-scan swaybg swayidle swaylock system-config-printer \
     terminus-bitmap-fonts udiskie udisks2 \
     waybar wayland-devel wayland-protocols-devel wget wireplumber wl-clipboard wlsunset \
-    xdg-desktop-portal-gnome yazi youtube-dl zenity zoxide 
+    xdg-desktop-portal-gnome xwayland-satellite yazi youtube-dl zenity zoxide 
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
