@@ -49,7 +49,7 @@ echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo zypper install \
+sudo zypper install -y \
     avahi baobab brightnessctl btop cliphist dnf-plugins-core evince fastfetch fd ffmpeg \
     firewall-applet firewalld fish font-manager foot fuzzel fzf \
     gawk gcc geany gparted gvfs hplip ImageMagick jq jetbrains-mono-fonts \
