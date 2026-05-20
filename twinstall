@@ -133,7 +133,6 @@ git config --global user.name "LrestJ"
 git remote remove origin
 git remote add github git@github.com:lrestj/install.git
 git remote add gitlab git@gitlab.com:lrestj/install.git
-git remote -v
 
 echo    
 echo "#######################################"
@@ -163,6 +162,7 @@ echo "#####################"
 echo
 opi -n brave
 opi -n galculator
+opi -n waypaper
 
 # Vim build
 bash $HOME/.local/bin/vimbuild
