@@ -132,7 +132,7 @@ case $answer in
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
            ;;
-     * ) echo "Vyberte 1, 2, nebo 3";;
+     * ) exit 1;;
 esac
   
 echo "####################"

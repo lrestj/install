@@ -163,7 +163,7 @@ case $answer in
            echo "################################"
            bash $HOME/.local/bin/bravedeb
            ;;
-     * ) echo "Vyberte 1, 2, nebo 3";;
+     * ) exit 1;;
 esac
 
 git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
@@ -224,7 +224,7 @@ sudo powerprofilesctl set performance
 case $answer in
     [1]* ) bash /home/libor/.local/bin/nvdinstall
            break;;
-    * ) exit;;
+    * ) ;;
 esac
 
 echo
