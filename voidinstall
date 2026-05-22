@@ -14,29 +14,29 @@ while true; do
     read -r -n 1 -p " Vyberte 1/2/3: " answer
     case $answer in
         [1]* ) echo
-               echo "####################################"
-               echo "#                                  #"
-               echo "#  Zvolili jste Zbook...           #"
-               echo "#                                  #"
-               echo "####################################"
+               echo "###########################"
+               echo "#                         #"
+               echo "#  Zvolili jste Zbook...  #"
+               echo "#                         #"
+               echo "###########################"
                echo
                sleep 4 
                break;;
         [2]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Probook...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Probook...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4 
                break;;
         [3]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Zvolili jste Mirantb...           #"
-               echo "#                                    #"
-               echo "######################################"
+               echo "#############################"
+               echo "#                           #"
+               echo "#  Zvolili jste Mirantb...  #"
+               echo "#                           #"
+               echo "#############################"
                echo
                sleep 4
                break;;
@@ -59,7 +59,7 @@ sudo xbps-install -S \
 7zip alsa-pipewire autofs baobab brave-browser brightnessctl btop base-devel \
 chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf \
-galculator geany glxinfo gparted grimshot gufw gvfs \
+galculator gcolor3 geany glxinfo gparted grimshot gufw gvfs \
 hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel \
 jq libreoffice-calc libreoffice-gnome libreoffice-i18n-cs libreoffice-writer \
 libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
@@ -70,7 +70,7 @@ qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto \
 simple-scan snooze swayidle swaylock tmux tumbler \
 udiskie unzip vim vlc void-live-audio \
 Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
-xdg-desktop-portal-gtk xdg-user-dirs xfce-polkit xhost xmirror \
+xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
 xournalpp xtools xwayland-satellite xz yazi zenity zip
 
     case $answer in
@@ -81,7 +81,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#                                  #"
                echo "####################################"
                sudo xbps-install -S nvidia
-               git clone --bare -b voidniri https://github.com/lrestj/zbook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -100,7 +100,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Probook...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b voidniri https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -119,7 +119,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b voidniri https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b void https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
                echo "###################################"
@@ -132,7 +132,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
                ;;
-         * ) echo "Vyberte 1, 2, nebo 3";;
+         * ) exit 1;;
      esac
  
 echo "###########################"
@@ -186,7 +186,7 @@ echo "#                 #"
 echo "#  Grub settings  #"
 echo "#                 #"
 echo "###################"
-sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/TelaGrubTheme/theme.txt' /etc/default/grub
+sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/voidGrubTheme/theme.txt' /etc/default/grub
 sudo update-grub
 
 echo
@@ -197,6 +197,7 @@ echo "#                       #"
 echo "#########################"
 echo
 bash $HOME/.local/bin/inreconf
+sudo powerprofilesctl set performance
 
 echo
 echo "###################"
