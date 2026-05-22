@@ -7,6 +7,16 @@
     border purple   #8000ff  rgba(128, 0, 255, 1)
     background      #2a2e32  rgba(42, 46, 50, 1)
 
+### Vim override in env.system.pkgs
+ (vim-full.overrideAttrs (oldAttrs: rec {
+     src = fetchFromGitHub {
+         owner = "vim";
+         repo = "vim";
+         rev = "master";
+         sha256 = "sha256-SzEEE9nmrmzlQK7+XcCstnQfeMfV6VMIaFeSFP7k2nU=";
+     };
+ }))
+
 ### Reduce swappiness
     echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 

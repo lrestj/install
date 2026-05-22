@@ -24,7 +24,7 @@ while true; do
                echo "#  Probíhá konfigurace Zbook...    #"
                echo "#                                  #"
                echo "####################################"
-               git clone --bare -b nixos --single-branch https://github.com/lrestj/zbook.git $HOME/.cfg.git
+               git clone --bare -b nixos https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/zbook/ 
                sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#zbook 
@@ -45,7 +45,7 @@ while true; do
                echo "#  Probíhá konfigurace Probook...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare -b nixos --single-branch https://github.com/lrestj/probook.git $HOME/.cfg.git
+               git clone --bare -b nixos https://github.com/lrestj/probook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/probook/ 
                sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#probook
@@ -66,7 +66,7 @@ while true; do
                echo "#  Probíhá konfigurace Mirantb...    #"
                echo "#                                    #"
                echo "######################################"
-               git clone --bare https://github.com/lrestj/mirantb.git $HOME/.cfg.git
+               git clone --bare -b nixos https://github.com/lrestj/mirantb.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/mirantb/ 
                sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#mirantb
