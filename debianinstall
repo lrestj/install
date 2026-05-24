@@ -79,7 +79,7 @@ echo "#######################"
 sleep 2
 sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
-    brightnessctl btop cliphist evince fastfetch fd-find ffmpeg \
+    brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
     galculator gawk geany gparted gvfs hplip-gui imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
