@@ -61,7 +61,7 @@ chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf \
 galculator gcolor3 geany glxinfo gparted grimshot gufw gvfs \
 hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel \
-jq libreoffice-calc libreoffice-gnome libreoffice-i18n-cs libreoffice-writer \
+jq libreoffice libreoffice-gnome libreoffice-i18n-cs \
 libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
 ncurses-devel nemo nemo-fileroller network-manager-applet nfs-utils \
 niri noto-fonts-emoji noto-fonts-ttf nwg-look \
