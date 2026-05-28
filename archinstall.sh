@@ -95,7 +95,7 @@ case $answer in
            echo "#  Probíhá konfigurace Probook...    #"
            echo "#                                    #"
            echo "######################################"
-           git clone --bare -b endeavourOS https://github.com/lrestj/probook.git $HOME/.cfg.git
+           git clone --bare -b arch https://github.com/lrestj/probook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
            echo "###################################"
