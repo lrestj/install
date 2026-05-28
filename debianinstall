@@ -223,7 +223,7 @@ sudo powerprofilesctl set performance
 # Nvidia install to Zbook
 case $answer in
     [1]* ) bash /home/libor/.local/bin/nvdinstall
-           break;;
+           ;;
     * ) ;;
 esac
 
