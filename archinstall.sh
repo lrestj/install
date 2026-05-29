@@ -64,7 +64,7 @@ mako mpv nemo-fileroller network-manager-applet niri ntfs-utils nwg-look \
 p7zip pamixer papirus-icon-theme pavucontrol pdfarranger \
 qjackctl qt6ct qutebrowser rclone \
 simple-scan swaybg swayidle swaylock \
-ttf-hack-nerd ttf-nerd-fonts-symbols udiskie vlc \
+ttf-hack-nerd ttf-nerd-fonts-symbols udiskie unrar vlc \
 waybar wayland-protocols wlsunset \
 xdg-desktop-portal-gnome xwayland-satellite xournalpp \
 yazi zenity zip 
