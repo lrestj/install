@@ -57,11 +57,11 @@ echo "#################################"
 sudo pacman -S --noconfirm \
 awesome-terminal-fonts baobab brightnessctl btop \
 cinnamon-translations cliphist evince \
-fastfetch firewall-applet fish font-manager foot fuzzel fzf \
+fastfetch file-roller firewall-applet fish font-manager foot fuzzel fzf \
 galculator gcolor3 geany glxinfo gparted grim gvfs jq \
 kitty kwallet-pam kwalletmanager less libreoffice-fresh-cs \
-mako mpv nemo network-manager-applet niri nwg-look \
-p7zip pamixer papirus-icon-theme pdfarranger \
+mako mpv nemo-fileroller network-manager-applet niri ntfs-utils nwg-look \
+p7zip pamixer papirus-icon-theme pavucontrol pdfarranger \
 qjackctl qt6ct qutebrowser rclone \
 simple-scan swaybg swayidle swaylock \
 ttf-hack-nerd ttf-nerd-fonts-symbols udiskie vlc \
