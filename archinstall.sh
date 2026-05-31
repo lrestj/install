@@ -61,7 +61,7 @@ fastfetch file-roller firewall-applet fish font-manager foot fuzzel fzf \
 galculator gcolor3 geany glxinfo gparted grim gvfs hplip jq \
 kitty kwallet-pam kwalletmanager less libreoffice-fresh-cs \
 mako mpv nemo-fileroller network-manager-applet niri nfs-utils nwg-look \
-p7zip pamixer papirus-icon-theme pavucontrol pdfarranger python-pyqt5 \
+p7zip pacman-contrib pamixer papirus-icon-theme pavucontrol pdfarranger python-pyqt5 \
 qjackctl qt6ct qutebrowser rclone reflector \
 simple-scan swaybg swayidle swaylock \
 ttf-hack-nerd ttf-nerd-fonts-symbols udiskie unrar vlc \
