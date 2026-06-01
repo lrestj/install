@@ -67,7 +67,7 @@ ncurses-devel nemo nemo-fileroller network-manager-applet nfs-utils \
 niri noto-fonts-emoji noto-fonts-ttf nwg-look \
 pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon \
 qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto \
-simple-scan snooze swaybg swayidle swaylock tmux tumbler \
+simple-scan snooze swaybg swayidle swaylock tmux tumbler terminus-font \
 udiskie unzip vim vlc void-live-audio \
 Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
 xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
@@ -156,6 +156,7 @@ sudo ln -s /etc/sv/cupsd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/chronyd /var/service/
 sudo powerprofilesctl set performance
+sudo sed -i -e 's/FONT=.*/FONT=ter-222b/g' /etc/rc.conf
 
 # Fstrim
 sudo mkdir -p /etc/cron.weekly
