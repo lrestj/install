@@ -80,7 +80,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Zbook...    #"
                echo "#                                  #"
                echo "####################################"
-               sudo xbps-install -S nvidia
+               sudo xbps-install -S nvidia580
                git clone --bare -b void https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
@@ -167,7 +167,7 @@ sudo ln -s /etc/sv/chronyd /var/service/
 
 # Fstrim
 sudo mkdir -p /etc/cron.weekly
-sudo cp -v $HOME/.local/bin/fstrimdo
+sudo cp -v $HOME/.local/bin/fstrimdo /etc/cron.weekly/
 
 mkdir -p Dokumenty Videa Hudba Stažené Templates
 
