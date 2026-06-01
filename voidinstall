@@ -196,8 +196,8 @@ echo "#  Dokončení instalace  #"
 echo "#                       #" 
 echo "#########################"
 echo
-bash $HOME/.local/bin/inreconf
 sudo powerprofilesctl set performance
+bash $HOME/.local/bin/inreconf
 
 echo
 echo "###################"
