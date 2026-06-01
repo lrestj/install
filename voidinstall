@@ -142,15 +142,6 @@ sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
-
-# sudo useradd -M -G video greeter
-# sudo mkdir /var/cache/tuigreet
-# sudo chown greeter:greeter /var/cache/tuigreet
-# sudo chmod 0755 /var/cache/tuigreet
-# sudo cp -rfv $HOME/.dotfiles/greetd /etc/
-# sudo ln -s /etc/sv/greetd /var/service/
-# sudo sv down greetd
-
 sudo mkdir -p /etc/sysctl.d
 echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rfv $HOME/.dotfiles/autofs /etc/
@@ -164,6 +155,7 @@ sudo ln -s /etc/sv/snooze-weekly /var/service/
 sudo ln -s /etc/sv/cupsd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/chronyd /var/service/
+sudo powerprofilesctl set performance
 
 # Fstrim
 sudo mkdir -p /etc/cron.weekly
@@ -181,30 +173,23 @@ git remote add gitlab git@gitlab.com:lrestj/install.git
 git remote -v
 
 echo
-echo "###################"
-echo "#                 #"
-echo "#  Grub settings  #"
-echo "#                 #"
-echo "###################"
+echo "###############################"
+echo "#                             #"
+echo "#  Grub settings & Vim build  #"
+echo "#                             #"
+echo "###############################"
 sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/voidGrubTheme/theme.txt' /etc/default/grub
 sudo update-grub
-
-echo
-echo "#########################"
-echo "#                       #" 
-echo "#  Dokončení instalace  #" 
-echo "#                       #" 
-echo "#########################"
-echo
-sudo powerprofilesctl set performance
-bash $HOME/.local/bin/inreconf
-
-echo
-echo "###################"
-echo "#                 #"
-echo "#  Instalace Vim  #"
-echo "#                 #"
-echo "###################"
 bash vimbuild
+
+echo
+echo "############################"
+echo "#  Po dokončení instalace  #" 
+echo "#  přepni na tty2          #"
+echo "#  a spusť autologiVoid    #" 
+echo "############################"
+echo
+sleep 7
+bash $HOME/.local/bin/inreconf
 
 ### END OF FILE ###
