@@ -44,7 +44,6 @@ while true; do
      esac
 done
 
-echo
 echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
@@ -53,12 +52,12 @@ sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
-    galculator gawk geany git gparted gvfs hplip-gui imagemagick jq \
+    galculator gawk  gcolor3 geany gparted gvfs hplip-gui imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
     mako-notifier nemo network-manager-applet nfs-common  nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto \
-    simple-scan swaybg swayidle swaylock system-config-printer \
+    simple-scan sway swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
     waybar wget wireplumber wl-clipboard wlsunset \
     youtubedl-gui zenity zoxide 
@@ -73,7 +72,7 @@ case $answer in
            echo "#  Probíhá konfigurace Zbook...    #"
            echo "#                                  #"
            echo "####################################"
-           git clone --bare -b nixos https://github.com/lrestj/zbook.git $HOME/.cfg.git
+           git clone --bare -b swaydebian https://github.com/lrestj/zbook.git $HOME/.cfg.git
            git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
            echo
            echo "###################################"
@@ -194,7 +193,7 @@ sudo powerprofilesctl set performance
 # Nvidia install to Zbook
 case $answer in
     [1]* ) bash /home/libor/.local/bin/nvdinstall
-           break;;
+           ;;
     * ) ;;
 esac
 

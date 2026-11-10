@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/libor'
+let g:netrw_dirhist_0='/home/libor/.nix-profile/bin'
+let g:netrw_dirhist_9='/home/libor/.dotfiles/scripts'
+let g:netrw_dirhist_8='/home/libor'
+let g:netrw_dirhist_7='/home/libor/.cache'
+let g:netrw_dirhist_6='/home/libor'
+let g:netrw_dirhist_5='/home/libor/.cache'
+let g:netrw_dirhist_4='/home/libor'
+let g:netrw_dirhist_3='/home/libor/.config/vim'
+let g:netrw_dirhist_2='/home/libor/.config'
