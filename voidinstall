@@ -59,15 +59,15 @@ sudo xbps-install -S \
 7zip alsa-pipewire autofs baobab brave-browser brightnessctl btop base-devel \
 chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell fontmanager foot fuzzel fzf \
-galculator gcolor3 geany glxinfo gparted grimshot gufw gvfs \
-hplip-gui hunspell-cs hunspell-en imagewriter intel-video-accel \
-jq libreoffice-calc libreoffice-gnome libreoffice-i18n-cs libreoffice-writer \
+galculator gcolor3 geany glxinfo gparted gufw gvfs \
+hplip-gui hunspell-cs hunspell-en intel-video-accel \
+jq libreoffice-calc libreoffice-writer libreoffice-gnome libreoffice-i18n-cs \
 libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
 ncurses-devel nemo nemo-fileroller network-manager-applet nfs-utils \
 niri noto-fonts-emoji noto-fonts-ttf nwg-look \
 pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon \
 qt5-wayland qt6-wayland qt6ct qutebrowser qytdl resvg ristretto \
-simple-scan snooze swayidle swaylock tmux tumbler \
+simple-scan snooze swaybg swayidle swaylock tmux tumbler terminus-font \
 udiskie unzip vim vlc void-live-audio \
 Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
 xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
@@ -80,7 +80,7 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Zbook...    #"
                echo "#                                  #"
                echo "####################################"
-               sudo xbps-install -S nvidia
+               sudo xbps-install -S nvidia580
                git clone --bare -b void https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
@@ -142,15 +142,6 @@ sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
-
-# sudo useradd -M -G video greeter
-# sudo mkdir /var/cache/tuigreet
-# sudo chown greeter:greeter /var/cache/tuigreet
-# sudo chmod 0755 /var/cache/tuigreet
-# sudo cp -rfv $HOME/.dotfiles/greetd /etc/
-# sudo ln -s /etc/sv/greetd /var/service/
-# sudo sv down greetd
-
 sudo mkdir -p /etc/sysctl.d
 echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rfv $HOME/.dotfiles/autofs /etc/
@@ -164,10 +155,12 @@ sudo ln -s /etc/sv/snooze-weekly /var/service/
 sudo ln -s /etc/sv/cupsd /var/service/
 sudo ln -s /etc/sv/dbus /var/service/
 sudo ln -s /etc/sv/chronyd /var/service/
+sudo powerprofilesctl set performance
+sudo sed -i -e 's/FONT=.*/FONT=ter-222b/g' /etc/rc.conf
 
 # Fstrim
 sudo mkdir -p /etc/cron.weekly
-sudo cp -v $HOME/.local/bin/fstrimdo
+sudo cp -v $HOME/.local/bin/fstrimdo /etc/cron.weekly/
 
 mkdir -p Dokumenty Videa Hudba Stažené Templates
 
@@ -181,30 +174,23 @@ git remote add gitlab git@gitlab.com:lrestj/install.git
 git remote -v
 
 echo
-echo "###################"
-echo "#                 #"
-echo "#  Grub settings  #"
-echo "#                 #"
-echo "###################"
+echo "###############################"
+echo "#                             #"
+echo "#  Grub settings & Vim build  #"
+echo "#                             #"
+echo "###############################"
 sudo sed -i '11iGRUB_THEME=/home/libor/.dotfiles/voidGrubTheme/theme.txt' /etc/default/grub
 sudo update-grub
-
-echo
-echo "#########################"
-echo "#                       #" 
-echo "#  Dokončení instalace  #" 
-echo "#                       #" 
-echo "#########################"
-echo
-bash $HOME/.local/bin/inreconf
-sudo powerprofilesctl set performance
-
-echo
-echo "###################"
-echo "#                 #"
-echo "#  Instalace Vim  #"
-echo "#                 #"
-echo "###################"
 bash vimbuild
+
+echo
+echo "############################"
+echo "#  Po dokončení instalace  #" 
+echo "#  přepni na tty2          #"
+echo "#  a spusť autologiVoid    #" 
+echo "############################"
+echo
+sleep 7
+bash $HOME/.local/bin/inreconf
 
 ### END OF FILE ###

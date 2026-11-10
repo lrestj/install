@@ -6,6 +6,7 @@
     grey light      #64727b  rgba(100, 114, 123, 1)
     border purple   #8000ff  rgba(128, 0, 255, 1)
     background      #2a2e32  rgba(42, 46, 50, 1)
+    foot tittle bar #1f1f23
 
 <<<<<<< HEAD
 ### Vim override in env.system.pkgs
