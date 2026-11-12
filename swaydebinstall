@@ -52,8 +52,8 @@ sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
-    galculator gawk geany gnome-characters gparted gvfs hplip-gui hyprpicker imagemagick jq \
-    libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
+    galculator gawk geany gnome-characters gparted gvfs hplip-gui imagemagick jq \
+    libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libncurses-dev libxcb-cursor-dev libxkbcommon-dev \
     mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto rofi \
@@ -154,7 +154,6 @@ sudo systemctl enable firewalld.service
 sudo mkdir -p /etc/sysctl.d
 echo vm.swappiness=10 | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rv /home/libor/.dotfiles/journald.conf.d /etc/systemd/
-gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
 
 echo
 echo "###########################"
@@ -188,7 +187,6 @@ sleep 1
 sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.conf
 sudo rm -r /etc/network/
 sudo apt -y remove ifupdown 
-sudo powerprofilesctl set performance
 
 # Nvidia install to Zbook
 case $answer in
