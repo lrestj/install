@@ -52,11 +52,11 @@ sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
-    galculator gawk  gcolor3 geany gnome-characters gparted gvfs hplip-gui imagemagick jq \
+    galculator gawk geany gnome-characters gparted gvfs hplip-gui hyprpicker imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libxcb-cursor-dev libxkbcommon-dev \
-    mako-notifier nemo network-manager-applet nfs-common  nwg-look \
+    mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
     pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
-    resvg ripgrep ristretto \
+    resvg ripgrep ristretto rofi \
     simple-scan sway swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
     waybar wget wireplumber wl-clipboard wlsunset \
@@ -173,11 +173,11 @@ sudo update-grub
 
 echo
 echo "#################################"
-echo "#  Instalace balíčků ze zdroje  #"
+echo "#  Instalace Vim ze zdroje      #"
 echo "#################################"
 echo
 sleep 1
-bash $HOME/.local/bin/pkgsbuild
+bash $HOME/.local/bin/vimbuild
 
 echo
 echo "########################"
