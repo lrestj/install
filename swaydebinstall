@@ -50,8 +50,8 @@ echo "#######################"
 sleep 2
 sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
-    baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
-    firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
+    alacritty baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
+    firewall-applet firewalld fish font-manager fonts-jetbrains-mono fzf \
     galculator gawk geany gnome-characters gparted gvfs hplip-gui imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libncurses-dev libxcb-cursor-dev libxkbcommon-dev \
     libwayland-dev mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
@@ -60,7 +60,7 @@ sudo apt -y install \
     simple-scan sway swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
     waybar wayland-protocols wget wireplumber wl-clipboard wlsunset \
-    xwayland youtubedl-gui zenity zoxide 
+    xdg-desktop-portal-wlr xwayland youtubedl-gui zenity zoxide 
 
 cd $HOME
 mkdir -p Dokumenty Videa Hudba Stažené Templates
