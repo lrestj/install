@@ -54,12 +54,12 @@ sudo apt -y install \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono foot fzf \
     galculator gawk geany gnome-characters gparted gvfs hplip-gui imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libncurses-dev libxcb-cursor-dev libxkbcommon-dev \
-    mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
-    pamixer papirus-icon-theme pavucontrol power-profiles-daemon qt6ct qutebrowser \
+    libwayland-dev mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
+    pamixer papirus-icon-theme pkg-config pavucontrol power-profiles-daemon qt6ct qutebrowser \
     resvg ripgrep ristretto rofi \
     simple-scan sway swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
-    waybar wget wireplumber wl-clipboard wlsunset \
+    waybar wayland-protocols wget wireplumber wl-clipboard wlsunset \
     xwayland youtubedl-gui zenity zoxide 
 
 cd $HOME
