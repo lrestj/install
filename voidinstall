@@ -193,4 +193,4 @@ echo
 sleep 7
 bash $HOME/.local/bin/inreconf
 
-### END OF FILE ###
+#### END OF FILE ####
