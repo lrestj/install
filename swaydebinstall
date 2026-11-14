@@ -48,7 +48,6 @@ echo "#######################"
 echo "#  Instalace balíčků  #"
 echo "#######################"
 sleep 2
-sudo apt -y install xdg-desktop-portal-gnome --no-install-recommends
 sudo apt -y install \
     alacritty baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono fzf \
