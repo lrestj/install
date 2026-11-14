@@ -51,10 +51,10 @@ sleep 2
 sudo apt -y install \
     alacritty baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-jetbrains-mono fzf \
-    galculator gawk geany gnome-characters gparted gvfs hplip-gui imagemagick jq \
+    galculator gawk geany gnome-characters gvfs hplip-gui imagemagick jq \
     libnotify-bin libreoffice libreoffice-gnome libreoffice-l10n-cs libncurses-dev libxcb-cursor-dev libxkbcommon-dev \
     libwayland-dev mako-notifier mate-polkit nemo network-manager-applet nfs-common  nwg-look \
-    pamixer papirus-icon-theme pkg-config pavucontrol power-profiles-daemon qt6ct qutebrowser \
+    pamixer papirus-icon-theme pkg-config pavucontrol power-profiles-daemon qt6ct \
     resvg ripgrep ristretto rofi \
     simple-scan sway swaybg swayidle swaylock system-config-printer \
     udiskie udisks2 vainfo \
