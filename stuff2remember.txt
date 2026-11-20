@@ -57,4 +57,7 @@ blacklist nouveau
 ### Default terminal for Nemo
 gsettings set org.cinnamon.desktop.default-applications.terminal exec foot
 
+### Hromadné nahrazení ve všech souborech aktuálního adresáře
+grep --color=auto -rl "jetBrains" . | xargs sed -i 's/jetBrains/JetBrains/g'
+
 #### END OF FILE ##### 
