@@ -62,7 +62,7 @@ sudo apt -y install \
     xdg-desktop-portal-wlr xwayland youtubedl-gui zenity zoxide 
 
 cd $HOME
-mkdir -p Dokumenty Videa Hudba Stažené Templates
+mkdir -p Dokumenty Videa Hudba Stažené Templates Public
 
 case $answer in
     [1]* ) echo
