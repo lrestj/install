@@ -1,5 +1,8 @@
 ##### STUFF TO REMEMBER #####
 
+# Yazi cwd fcn key bind
+bindsym $mod+y exec $TERMINAL --app-id yazi -e fish -ic 'y; exec fish'
+
 ### My colors
     cool white      #d6dae4
     grey dark       #2e3440  rgba(46, 52, 64, 1)
