@@ -56,11 +56,11 @@ sudo xbps-install -S intel-ucode
 
 # Installing pkgs
 sudo xbps-install -S \
-7zip alsa-pipewire baobab brave-origin brightnessctl btop base-devel \
+7zip alsa-pipewire baobab brave-browser brightnessctl btop base-devel \
 chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
 fastfetch fd file-roller fish-shell font-inter fontmanager foot fzf \
 galculator geany gcolor3 glxinfo gparted gufw gvfs \
-hplip-gui hunspell-cs hunspell-en intel-video-accel \
+hplip-gui hunspell-cs hunspell-en hyprpicker intel-video-accel \
 jq libreoffice-calc libreoffice-writer libreoffice-gnome libreoffice-i18n-cs \
 libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
 ncurses-devel nemo nemo-fileroller network-manager-applet nfs-utils \
