@@ -7,6 +7,12 @@
     border purple   #8000ff  rgba(128, 0, 255, 1)
     background      #2a2e32  rgba(42, 46, 50, 1)
     foot tittle bar #1f1f23
+    Arch  blue     #1793D1    23, 147, 209
+          dark     #333333    51, 51, 51
+    Debian red   #D70A53   215,10,83
+    Nixos dark blue   5277C3     82, 119, 195
+          light blue  #7EBAE4  126, 186, 228
+
 
 <<<<<<< HEAD
 ### Vim override in env.system.pkgs
