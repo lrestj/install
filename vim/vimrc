@@ -1,0 +1,81 @@
+""""" VIM CONFIGURATION """""
+
+"My remaps
+let mapleader=" "
+nnoremap Q ZQ
+noremap <leader><leader> :set relativenumber!<CR>
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+"Line Up nad Down
+nnoremap <A-up> :m .-2<CR>==
+nnoremap <A-down> :m .+1<CR>==
+
+"Window next, buffer next, delete and vsplit
+noremap <leader>n <C-w>w
+noremap <leader>b :bn<CR>
+noremap <leader>x :bd<CR>
+noremap <leader>v :vnew<CR>
+
+"FZF settings
+let g:fzf_vim = {}
+let g:fzf_vim.command_prefix = 'Fzf'
+nnoremap <A-a> :FzfBLines<CR>
+nnoremap <A-s> :FzfLines<CR>
+nnoremap <A-d> :FzfFiles<CR>
+nnoremap <A-f> :FzfHistory<CR>
+nnoremap <A-g> :FzfRg<CR>
+nnoremap <A-u> :FzfBuffers<CR>
+nnoremap <A-c> :FzfChanges<CR>
+nnoremap <A-m> :FzfMarks<CR>
+nnoremap <A-j> :FzfJumps<CR>
+nnoremap <A-.> :FzfHistory:<CR>
+nnoremap <A-,> :FzfHistory/<CR>
+
+"Cursor look and bg render fix
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[2 q"
+let &t_ut=''
+
+"My settings
+set background=dark   
+colorscheme wildcharm
+syntax on
+filetype plugin indent on
+set nu cul autoread hidden lz
+set title titlestring=%F
+set ruler rulerformat=%43(\ \ %v\ \ \ %l/%L\ \ %p%%%=\ \%)
+set directory=$HOME
+set ignorecase smartcase incsearch
+set mouse=a scrolloff=5
+set spelllang=cs,en
+set softtabstop=4 shiftwidth=4 expandtab
+
+"Statusline and custom background    
+hi StatusLine ctermbg=0 ctermfg=22
+hi Normal ctermbg=234  
+hi NonText ctermbg=234
+hi LineNr ctermbg=234   
+hi cursorline ctermbg=235   
+
+"Plugins
+call plug#begin('/home/libor/.config/vim/plugged')
+    Plug 'tpope/vim-commentary'
+    Plug 'Konfekt/filepicker.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/vim-peekaboo'
+call plug#end()
+
+let g:peekaboo_window='botright vertical 40new'
+
+" Alacritty Alt fix
+    let c='a'
+    while c <= 'z'
+      exec "set <A-".c.">=\e".c
+      exec "imap \e".c." <A-".c.">"
+      let c = nr2char(1+char2nr(c))
+    endw
+    set timeout ttimeoutlen=50
+
+""""" END OF FILE """""
