@@ -68,7 +68,7 @@ niri noto-fonts-emoji noto-fonts-ttf nwg-look \
 pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon \
 qt5-wayland qt6-wayland qt6ct qytdl rclone resvg ristretto rofi \
 simple-scan snooze swaybg swayidle swaylock tmux tumbler terminus-font \
-udiskie unzip vim vlc void-live-audio \
+udiskie unzip vim vlc vsv \
 Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
 xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
 xournalpp xtools xwayland-satellite xz yazi zenity zip
