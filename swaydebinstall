@@ -193,15 +193,14 @@ echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.githu
 sudo apt update && sudo apt install -y yazi
 
 echo
-echo "#######################################"
-echo "#  NetworkManager fix & Polkit enable #"
-echo "#######################################"
+echo "#######################"
+echo "#  NetworkManager fix #"
+echo "#######################"
 echo
 sleep 1
 sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.conf
 sudo rm -r /etc/network/
 sudo apt -y remove ifupdown 
-systemctl --user enable mate-polkit.service
 
 # Nvidia install to Zbook
 case $answer in
