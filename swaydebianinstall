@@ -115,13 +115,6 @@ EOF
         git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add gitlab git@gitlab.com:lrestj/zbook.git
         git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote -v
 
-        cat << EOF
-################################
-# Instalace prohlížeče Brave   #
-################################
-EOF
-        bash "$HOME/.local/bin/bravedeb"
-        ;;
     2 )
         cat << EOF
 ######################################
@@ -130,7 +123,7 @@ EOF
 #                                    #
 ######################################
 EOF
-        git clone --bare -b debian https://github.com/lrestj/probook.git "$HOME/.cfg.git"
+        git clone --bare -b swaydebian https://github.com/lrestj/probook.git "$HOME/.cfg.git"
         git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" checkout -f &&
 
         cat << EOF
@@ -168,17 +161,18 @@ EOF
         git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add gitlab git@gitlab.com:lrestj/mirantb.git
         git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote -v
 
-        cat << EOF
-################################
-# Instalace prohlížeče Brave   #
-################################
-EOF
-        bash "$HOME/.local/bin/bravedeb"
-        ;;
     * )
         exit 1
         ;;
 esac
+
+cat << EOF
+
+################################
+# Instalace prohlížeče Brave   #
+################################
+EOF
+bash "$HOME/.local/bin/bravedeb"
 
 git clone https://github.com/lrestj/install "$HOME/.dotfiles/install/"
 cd "$HOME/.dotfiles/install/"
