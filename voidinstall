@@ -80,7 +80,6 @@ xournalpp xtools xwayland-satellite xz yazi zenity zip
                echo "#  Probíhá konfigurace Zbook...    #"
                echo "#                                  #"
                echo "####################################"
-               sudo xbps-install -S nvidia580
                git clone --bare -b void https://github.com/lrestj/zbook.git $HOME/.cfg.git
                git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
                echo
