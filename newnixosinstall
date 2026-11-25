@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CFG_DIR="$HOME/.cfg.git"
+DOTFILES_INSTALL="$HOME/.dotfiles/install"
+GIT_USER_NAME="LrestJ"
+GIT_USER_EMAIL="rest@seznam.cz"
+
+setup_remotes() {
+  local repo_name="$1"
+  local git_dir="${2:-}"
+  local work_tree="${3:-}"
+
+  if [[ -n "$git_dir" && -n "$work_tree" ]]; then
+    git --git-dir="$git_dir" --work-tree="$work_tree" remote remove origin 2>/dev/null || true
+    git --git-dir="$git_dir" --work-tree="$work_tree" remote add github "git@github.com:lrestj/${repo_name}.git"
+    git --git-dir="$git_dir" --work-tree="$work_tree" remote add gitlab "git@gitlab.com:lrestj/${repo_name}.git"
+    git --git-dir="$git_dir" --work-tree="$work_tree" remote -v
+  else
+    git remote remove origin 2>/dev/null || true
+    git remote add github "git@github.com:lrestj/${repo_name}.git"
+    git remote add gitlab "git@gitlab.com:lrestj/${repo_name}.git"
+    git remote -v
+  fi
+}
+
+cat << 'EOL'
+
+############################
+#                          #
+# Spouštím instalaci...    #
+#                          #
+############################
+EOL
+
+cat << 'EOL'
+
+##################################
+# Na jaký počítač instalujete?   #
+# Zbook = 1                      #
+# Probook = 2                    #
+# Mirantb = 3                    #
+##################################
+EOL
+
+while true; do
+  read -r -n 1 -p "Vyberte 1/2/3: " answer
+  printf "\n"
+  case "$answer" in
+    1) host="zbook"; break ;;
+    2) host="probook"; break ;;
+    3) host="mirantb"; break ;;
+    *) printf "Vyberte 1, 2 nebo 3.\n" ;;
+  esac
+done
+
+cat << EOL
+
+####################################
+#                                  #
+# Probíhá konfigurace ${host^}...  #
+#                                  #
+####################################
+EOL
+
+if [[ ! -d "$CFG_DIR" ]]; then
+  git clone --bare -b nixos "https://github.com{host}.git" "$CFG_DIR"
+fi
+
+git --git-dir="$CFG_DIR/" --work-tree="$HOME" checkout -f
+
+touch "$HOME/.gitignore"
+grep -qxF ".cfg.git" "$HOME/.gitignore" || printf ".cfg.git\n" >> "$HOME/.gitignore"
+
+cp -fv /etc/nixos/hardware-configuration.nix "$HOME/.dotfiles/nixos/hosts/${host}/"
+sudo nixos-rebuild switch --flake "$HOME/.dotfiles/nixos#${host}"
+
+cat << 'EOL'
+
+###################################
+# Konfigurace git repozitáře...   #
+###################################
+EOL
+
+git config --global user.email "$GIT_USER_EMAIL"
+git config --global user.name "$GIT_USER_NAME"
+setup_remotes "$host" "$CFG_DIR/" "$HOME"
+
+mkdir -p "$HOME/Dokumenty" "$HOME/Videa" "$HOME/Hudba" "$HOME/Stažené" "$HOME/Templates"
+
+if [[ -d "$DOTFILES_INSTALL/.git" ]]; then
+  git -C "$DOTFILES_INSTALL" pull --ff-only || true
+else
+  git clone "https://github.com" "$DOTFILES_INSTALL"
+fi
+
+(
+  cd "$DOTFILES_INSTALL"
+  setup_remotes "install"
+)
+
+cat << 'EOL'
+
+############################
+#                          #
+# Konec instalace          #
+# Lze smazat /etc/nixos/   #
+#                          #
+############################
+
+EOL
+
+while true; do
+  read -r -n 1 -p "Restartovat do nové konfigurace? (A/N): " answer
+  printf "\n"
+  case "$answer" in
+    [Aa])
+      printf "Restartuji...\n"
+      sleep 1
+      systemctl reboot
+      break
+      ;;
+    [Nn])
+      exit 0
+      ;;
+    *)
+      printf "Vyberte A nebo N.\n"
+      ;;
+  esac
+done
+
+#### END OF FILE ####
