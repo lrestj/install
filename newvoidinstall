@@ -1,0 +1,189 @@
+#!/bin/bash
+set -e
+
+cat << 'EOF'
+
+##################################
+# Na jaký počítač instalujete?   #
+# Zbook = 1                      #
+# Probook = 2                    #
+# Mirantb = 3                    #
+##################################
+EOF
+
+while true; do
+    read -r -n 1 -p "Vyberte 1/2/3: " answer
+    echo ""
+    case "$answer" in
+        1)
+            REPO="zbook"
+            cat << 'EOF'
+
+###########################
+#                         #
+# Zvolili jste Zbook...   #
+#                         #
+###########################
+
+EOF
+            sleep 4
+            break ;;
+        2)
+            REPO="probook"
+            cat << 'EOF'
+
+#############################
+#                           #
+# Zvolili jste Probook...   #
+#                           #
+#############################
+
+EOF
+            sleep 4
+            break ;;
+        3)
+            REPO="mirantb"
+            cat << 'EOF'
+
+#############################
+#                           #
+# Zvolili jste Mirantb...   #
+#                           #
+#############################
+
+EOF
+            sleep 4
+            break ;;
+        *)
+            echo "Vyberte 1, 2, nebo 3" ;;
+    esac
+done
+
+cat << 'EOF'
+##########################
+# Instalace balíčků...   #
+##########################
+EOF
+
+echo "repository=https://github.com" | sudo tee /etc/xbps.d/sofijacom-void-repository.conf > /dev/null
+sudo xbps-install -Syu
+sudo xbps-install -Sy void-repo-nonfree
+sudo xbps-install -Sy intel-ucode
+
+sudo xbps-install -Sy \
+    7zip alsa-pipewire baobab brave-browser brightnessctl btop base-devel \
+    chrony cliphist cryptsetup dconf-editor dialog elogind evince exfatprogs \
+    fastfetch fd file-roller fish-shell font-inter fontmanager foot fzf \
+    galculator geany gcolor3 glxinfo gparted gufw gvfs \
+    hplip-gui hunspell-cs hunspell-en hyprpicker intel-video-accel \
+    jq libreoffice-calc libreoffice-writer libreoffice-gnome libreoffice-i18n-cs \
+    libva-utils linux-headers lvm2 mako mdadm mesa-intel-dri mpv \
+    ncurses-devel nemo nemo-fileroller network-manager-applet nfs-utils \
+    niri noto-fonts-emoji noto-fonts-ttf nwg-look \
+    pamixer papirus-icon-theme pavucontrol pipewire power-profiles-daemon \
+    qt5-wayland qt6-wayland qt6ct qytdl rclone resvg ristretto rofi \
+    simple-scan snooze swaybg swayidle swaylock tmux tumbler terminus-font \
+    udiskie unzip vim vlc vsv \
+    Waybar wayland-devel wayland-protocols wlsunset xdg-desktop-portal-gnome \
+    xdg-desktop-portal-gtk xeyes xdg-user-dirs xfce-polkit xhost xmirror \
+    xournalpp xtools xwayland-satellite xz yazi zenity zip
+
+cat << EOF
+
+######################################
+#                                    #
+# Probíhá konfigurace $REPO...       #
+#                                    #
+######################################
+EOF
+
+mv -f "$HOME/.bashrc" "$HOME/.bashrc.bak" 2>/dev/null || true
+git clone --bare -b void "https://github.com{REPO}.git" "$HOME/.cfg.git"
+
+CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
+$CFG checkout -f
+$CFG config --local status.showUntrackedFiles no
+
+cat << 'EOF'
+
+###################################
+# Konfigurace git repozitáře...   #
+###################################
+EOF
+
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+$CFG remote remove origin
+$CFG remote add github "git@github.com:lrestj/${REPO}.git"
+$CFG remote add gitlab "git@gitlab.com:lrestj/${REPO}.git"
+$CFG remote -v
+
+cat << 'EOF'
+###########################
+# Konfigurace služeb...   #
+###########################
+EOF
+
+sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
+sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
+
+for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekly cupsd chronyd; do
+    sudo ln -sf "/etc/sv/$s" /var/service/
+done
+sudo rm -f /var/service/dhcpcd
+
+sleep 2
+sudo powerprofilesctl set performance || true
+sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
+
+cat << 'EOF'
+
+###########################
+# Nfs Synology settings   #
+###########################
+EOF
+
+sudo cp -n /etc/fstab /etc/fstab.bak
+cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
+sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
+mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
+
+git clone https://github.com "$HOME/.dotfiles/install"
+cd "$HOME/.dotfiles/install"
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git remote -v
+
+cat << 'EOF'
+
+###############################
+#                             #
+# Grub settings & Vim build   #
+#                             #
+###############################
+EOF
+
+echo "GRUB_THEME=$HOME/.dotfiles/voidGrubTheme/theme.txt" | sudo tee -a /etc/default/grub > /dev/null
+sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=2/' /etc/default/grub
+sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=true/' /etc/default/grub
+sudo update-grub
+
+bash "$HOME/.dotfiles/install/vim/vimbuild"
+
+cat << 'EOF'
+
+############################
+# Po dokončení instalace  #
+# přepni na tty2           #
+# a spusť autologiVoid     #
+############################
+
+EOF
+
+sleep 7
+bash "$HOME/.local/bin/inreconf"
+
+#### END OF FILE ####
