@@ -171,18 +171,8 @@ sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=true/' /etc/def
 sudo update-grub
 
 bash "$HOME/.local/bin/vimbuild"
+sudo bash "$HOME/.local/bin/autologinVoid"
 
-cat << 'EOF'
-
-############################
-# Po dokončení instalace   #
-# přepni na tty2           #
-# a spusť autologinVoid    #
-############################
-
-EOF
-
-sleep 7
 bash "$HOME/.local/bin/inreconf"
 
 #### END OF FILE ####
