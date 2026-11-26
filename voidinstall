@@ -130,7 +130,6 @@ echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
 for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekly cupsd chronyd; do
     sudo ln -sf "/etc/sv/$s" /var/service/
 done
-sudo rm -f /var/service/dhcpcd
 
 sleep 2
 sudo powerprofilesctl set performance || true
@@ -172,7 +171,35 @@ sudo update-grub
 
 bash "$HOME/.local/bin/vimbuild"
 sudo bash "$HOME/.local/bin/autologinVoid"
+sudo rm -f /var/service/dhcpcd
 
-bash "$HOME/.local/bin/inreconf"
+cat << EOF
+#####################
+# Konec instalace   #
+#####################
+
+####################################
+# Restartovat do nového systému?   #
+####################################
+EOF
+
+while true; do
+    read -r -n 1 -p "Vyberte (A/N): " restart_answer
+    echo ""
+    case "$restart_answer" in
+        [Aa]* )
+            echo -e "\nRestartuji..."
+            sleep 1
+            sudo loginctl reboot
+            break
+            ;;
+        [Nn]* )
+            exit 0
+            ;;
+        * )
+            echo -e "\nVyberte A nebo N."
+            ;;
+    esac
+done
 
 #### END OF FILE ####
