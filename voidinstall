@@ -117,25 +117,6 @@ $CFG remote add gitlab "git@gitlab.com:lrestj/${REPO}.git"
 $CFG remote -v
 
 cat << 'EOF'
-###########################
-# Konfigurace služeb...   #
-###########################
-EOF
-
-sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
-sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
-sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
-echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
-
-for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekly cupsd chronyd; do
-    sudo ln -sf "/etc/sv/$s" /var/service/
-done
-
-sleep 2
-sudo powerprofilesctl set performance || true
-sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
-
-cat << 'EOF'
 
 ###########################
 # Nfs Synology settings   #
@@ -171,9 +152,31 @@ sudo update-grub
 
 bash "$HOME/.local/bin/vimbuild"
 sudo bash "$HOME/.local/bin/autologinVoid"
+
+cat << 'EOF'
+
+###########################
+# Konfigurace služeb...   #
+###########################
+EOF
+
+sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
+sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
+
+for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekly cupsd chronyd; do
+    sudo ln -sf "/etc/sv/$s" /var/service/
+done
+
+sleep 2
+sudo powerprofilesctl set performance || true
+sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
 sudo rm -f /var/service/dhcpcd
 
+
 cat << EOF
+
 #####################
 # Konec instalace   #
 #####################
