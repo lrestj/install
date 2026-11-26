@@ -125,7 +125,6 @@ EOF
 
 sudo cp -n /etc/fstab /etc/fstab.bak || true
 cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
-sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
 sudo mkdir -p /nfs/Nas /nfs/FilmyNas /nfs/HudbaNas
 mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
 
@@ -161,6 +160,7 @@ cat << 'EOF'
 EOF
 
 sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
+sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
 sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
 sudo ln -sf /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
 echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf > /dev/null
@@ -173,6 +173,7 @@ sleep 2
 sudo powerprofilesctl set performance || true
 sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
 sudo rm -f /var/service/dhcpcd
+sudo rm -f /var/service/wpa_supplicant
 
 
 cat << EOF
