@@ -65,7 +65,7 @@ cat << 'EOF'
 ##########################
 EOF
 
-echo "repository=https://github.com" | sudo tee /etc/xbps.d/sofijacom-void-repository.conf > /dev/null
+printf "repository=https://github.com/sofijacom/void-package/releases/latest/download/\n" | sudo tee /etc/xbps.d/sofijacom-void-repository.conf
 sudo xbps-install -Syu
 sudo xbps-install -Sy void-repo-nonfree
 sudo xbps-install -Sy intel-ucode
@@ -97,12 +97,10 @@ cat << EOF
 ######################################
 EOF
 
-mv -f "$HOME/.bashrc" "$HOME/.bashrc.bak" 2>/dev/null || true
-git clone --bare -b void "https://github.com{REPO}.git" "$HOME/.cfg.git"
+git clone --bare -b void "https://github.com/lrestj/{REPO}.git" "$HOME/.cfg.git"
 
 CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
 $CFG checkout -f
-$CFG config --local status.showUntrackedFiles no
 
 cat << 'EOF'
 
@@ -150,7 +148,7 @@ cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
 sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
 mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
 
-git clone https://github.com "$HOME/.dotfiles/install"
+git clone https://github.com/lrestj/install "$HOME/.dotfiles/install"
 cd "$HOME/.dotfiles/install"
 git remote remove origin
 git remote add github git@github.com:lrestj/install.git
