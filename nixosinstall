@@ -86,6 +86,9 @@ git clone --bare -b nirinixos "https://github.com/lrestj/${REPO}.git" "$HOME/.cf
 CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
 $CFG checkout -f
 
+cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/${REPO}/
+sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#${REPO}
+
 cat << 'EOF'
 
 ###################################
