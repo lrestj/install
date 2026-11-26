@@ -10,7 +10,6 @@ cat << 'EOF'
 # Mirantb = 3                    #
 ##################################
 EOF
-
 while true; do
     read -r -n 1 -p "Vyberte 1/2/3: " answer
     echo ""
@@ -20,11 +19,8 @@ while true; do
             cat << 'EOF'
 
 ###########################
-#                         #
 # Zvolili jste Zbook...   #
-#                         #
 ###########################
-
 EOF
             sleep 4
             break ;;
@@ -33,11 +29,8 @@ EOF
             cat << 'EOF'
 
 #############################
-#                           #
 # Zvolili jste Probook...   #
-#                           #
 #############################
-
 EOF
             sleep 4
             break ;;
@@ -46,11 +39,8 @@ EOF
             cat << 'EOF'
 
 #############################
-#                           #
 # Zvolili jste Mirantb...   #
-#                           #
 #############################
-
 EOF
             sleep 4
             break ;;
@@ -60,11 +50,11 @@ EOF
 done
 
 cat << 'EOF'
+
 ##########################
 # Instalace balíčků...   #
 ##########################
 EOF
-
 printf "repository=https://github.com/sofijacom/void-package/releases/latest/download/\n" | sudo tee /etc/xbps.d/sofijacom-void-repository.conf
 sudo xbps-install -Syu
 sudo xbps-install -Sy void-repo-nonfree
@@ -91,14 +81,10 @@ sudo xbps-install -Sy \
 cat << EOF
 
 ######################################
-#                                    #
 # Probíhá konfigurace $REPO...       #
-#                                    #
 ######################################
 EOF
-
 git clone --bare -b void "https://github.com/lrestj/${REPO}.git" "$HOME/.cfg.git"
-
 CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
 $CFG checkout -f
 
@@ -108,25 +94,12 @@ cat << 'EOF'
 # Konfigurace git repozitáře...   #
 ###################################
 EOF
-
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
 $CFG remote remove origin
 $CFG remote add github "git@github.com:lrestj/${REPO}.git"
 $CFG remote add gitlab "git@gitlab.com:lrestj/${REPO}.git"
 $CFG remote -v
-
-cat << 'EOF'
-
-###########################
-# Nfs Synology settings   #
-###########################
-EOF
-
-sudo cp -n /etc/fstab /etc/fstab.bak || true
-cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
-sudo mkdir -p /nfs/Nas /nfs/FilmyNas /nfs/HudbaNas
-mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
 
 git clone https://github.com/lrestj/install "$HOME/.dotfiles/install"
 cd "$HOME/.dotfiles/install"
@@ -137,13 +110,21 @@ git remote -v
 
 cat << 'EOF'
 
+###########################
+# Nfs Synology settings   #
+###########################
+EOF
+sudo cp -n /etc/fstab /etc/fstab.bak || true
+cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
+sudo mkdir -p /nfs/Nas /nfs/FilmyNas /nfs/HudbaNas
+mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
+
+cat << 'EOF'
+
 ###############################
-#                             #
 # Grub settings & Vim build   #
-#                             #
 ###############################
 EOF
-
 echo "GRUB_THEME=$HOME/.dotfiles/voidGrubTheme/theme.txt" | sudo tee -a /etc/default/grub > /dev/null
 sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=2/' /etc/default/grub
 sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=true/' /etc/default/grub
@@ -158,7 +139,6 @@ cat << 'EOF'
 # Konfigurace služeb...   #
 ###########################
 EOF
-
 sleep 2
 sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
 sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
@@ -170,23 +150,17 @@ for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekl
     sudo ln -sf "/etc/sv/$s" /var/service/
 done
 
-sudo powerprofilesctl set performance || true
 sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
 sudo rm -f /var/service/dhcpcd
 sudo rm -f /var/service/wpa_supplicant
 
-
 cat << EOF
 
-#####################
-# Konec instalace   #
-#####################
-
 ####################################
+# Konec instalace                  #
 # Restartovat do nového systému?   #
 ####################################
 EOF
-
 while true; do
     read -r -n 1 -p "Vyberte (A/N): " restart_answer
     echo ""

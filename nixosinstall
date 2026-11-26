@@ -54,14 +54,10 @@ EOF
     esac
 done
 
-  
-mkdir Dokumenty Videa Hudba Stažené Templates
-
 cat << 'EOF'
 ##########################
 # Repozitář pro Install  #
 ##########################
-
 EOF
 
 git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
@@ -79,7 +75,6 @@ cat << EOF
 # Probíhá konfigurace $REPO ...   #
 ###################################
 EOF
-
 git clone --bare -b nirinixos "https://github.com/lrestj/${REPO}.git" "$HOME/.cfg.git"
 
 CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
@@ -94,13 +89,14 @@ cat << 'EOF'
 # Konfigurace git repozitářů ...   #
 ####################################
 EOF
-
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
 $CFG remote remove origin
 $CFG remote add github git@github.com:lrestj/${REPO}.git
 $CFG remote add gitlab git@gitlab.com:lrestj/${REPO}.git
 $CFG remote -v
+
+mkdir Dokumenty Videa Hudba Stažené Public
 
 cat << 'EOF'
 
@@ -109,7 +105,6 @@ cat << 'EOF'
 #  Lze smazat /etc/nixos/  #" 
 ############################"
 EOF
-
 while true; do
     read -r -n 1 -p "Restartovat do nové konfigurace? (A/N): " answer
     case $answer in

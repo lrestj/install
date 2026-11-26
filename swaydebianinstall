@@ -30,6 +30,7 @@ while true; do
     echo ""
     case "$answer" in
         1 )
+            REPO="zbook"
             cat << EOF
 ###########################
 #                         #
@@ -41,6 +42,7 @@ EOF
             break
             ;;
         2 )
+            REPO="probook"
             cat << EOF
 #############################
 #                           #
@@ -52,6 +54,7 @@ EOF
             break
             ;;
         3 )
+            REPO="mirantb"
             cat << EOF
 #############################
 #                           #
@@ -91,80 +94,37 @@ sudo apt -y install \
 cd "$HOME"
 mkdir -p Dokumenty Videa Hudba Stažené Templates Public
 
-case "$answer" in
-    1 )
         cat << EOF
 ####################################
 #                                  #
-# Probíhá konfigurace Zbook...     #
+# Probíhá konfigurace ${REPO}      #
 #                                  #
 ####################################
 EOF
-        git clone --bare -b swaydebian https://github.com/lrestj/zbook.git "$HOME/.cfg.git"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" checkout -f &&
+        git clone --bare -b swaydebian https://github.com/lrestj/${REPO}.git "$HOME/.cfg.git"
+        CFG=git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME"
+        ${CFG} checkout -f 
 
         cat << EOF
 ###################################
-# Konfigurace git repozitáře...   #
+# Konfigurace git repozitářů...   #
 ###################################
 EOF
         git config --global user.email "rest@seznam.cz"
         git config --global user.name "LrestJ"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote remove origin
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add github git@github.com:lrestj/zbook.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add gitlab git@gitlab.com:lrestj/zbook.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote -v
+        ${CFG} remote remove origin
+        ${CFG} remote add github git@github.com:lrestj/${REPO}.git
+        ${CFG} remote add gitlab git@gitlab.com:lrestj/${REPO}.git
+        ${CFG} remote -v
 
-    2 )
-        cat << EOF
-######################################
-#                                    #
-# Probíhá konfigurace Probook...     #
-#                                    #
-######################################
-EOF
-        git clone --bare -b swaydebian https://github.com/lrestj/probook.git "$HOME/.cfg.git"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" checkout -f &&
-
-        cat << EOF
-###################################
-# Konfigurace git repozitáře...   #
-###################################
-EOF
+        git clone https://github.com/lrestj/install "$HOME/.dotfiles/install/"
+        cd "$HOME/.dotfiles/install/"
         git config --global user.email "rest@seznam.cz"
         git config --global user.name "LrestJ"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote remove origin
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add github git@github.com:lrestj/probook.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add gitlab git@gitlab.com:lrestj/probook.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote -v
-        ;;
-    3 )
-        cat << EOF
-######################################
-#                                    #
-# Probíhá konfigurace Mirantb...     #
-#                                    #
-######################################
-EOF
-        git clone --bare -b debian https://github.com/lrestj/mirantb.git "$HOME/.cfg.git"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" checkout -f &&
-
-        cat << EOF
-###################################
-# Konfigurace git repozitáře...   #
-###################################
-EOF
-        git config --global user.email "rest@seznam.cz"
-        git config --global user.name "LrestJ"
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote remove origin
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add github git@github.com:lrestj/mirantb.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote add gitlab git@gitlab.com:lrestj/mirantb.git
-        git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME" remote -v
-
-    * )
-        exit 1
-        ;;
-esac
+        git remote remove origin
+        git remote add github git@github.com:lrestj/install.git
+        git remote add gitlab git@gitlab.com:lrestj/install.git
+        git remote -v
 
 cat << EOF
 
@@ -174,16 +134,8 @@ cat << EOF
 EOF
 bash "$HOME/.local/bin/bravedeb"
 
-git clone https://github.com/lrestj/install "$HOME/.dotfiles/install/"
-cd "$HOME/.dotfiles/install/"
-git config --global user.email "rest@seznam.cz"
-git config --global user.name "LrestJ"
-git remote remove origin
-git remote add github git@github.com:lrestj/install.git
-git remote add gitlab git@gitlab.com:lrestj/install.git
-git remote -v
-
 cat << EOF
+
 #######################################
 # Autologin & firewall & swappiness   #
 #######################################
@@ -195,6 +147,7 @@ echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-swappiness.conf
 sudo cp -rv "$HOME/.dotfiles/journald.conf.d" /etc/systemd/
 
 cat << EOF
+
 ###########################
 # Nfs Synology settings   #
 ###########################
@@ -203,6 +156,7 @@ sudo cp -v /etc/fstab /etc/fstab.bak
 cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
 
 cat << EOF
+
 ###################
 # Grub settings   #
 ###################
@@ -214,6 +168,7 @@ sudo cp -fv "$HOME/.dotfiles/40_custom" /etc/grub.d/
 sudo update-grub
 
 cat << EOF
+
 ############################
 # APT sources update       #
 ############################
@@ -226,6 +181,7 @@ sudo apt install -y hyprpicker
 bash "$HOME/.local/bin/vimbuild"
 
 cat << EOF
+
 #######################
 # Installing Yazi     #
 #######################
@@ -235,6 +191,7 @@ echo "deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.githu
 sudo apt update && sudo apt install -y yazi
 
 cat << EOF
+
 #######################
 # NetworkManager fix  #
 #######################
@@ -244,16 +201,8 @@ sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.
 sudo rm -rf /etc/network/
 sudo apt -y remove ifupdown
 
-# Nvidia install to Zbook
-case "$answer" in
-    1 )
-        bash "$HOME/.local/bin/nvdinstall"
-        ;;
-    * )
-        ;;
-esac
-
 cat << EOF
+
 #####################
 # Konec instalace   #
 #####################
