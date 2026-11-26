@@ -98,11 +98,10 @@ EOF
 
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
-$CFG remote remove origin
-$CFG remote add github "git@github.com:lrestj/${REPO}.git"
-$CFG remote add gitlab "git@gitlab.com:lrestj/${REPO}.git"
-$CFG remote -v
-
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
+git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
 
 cat << 'EOF'
 
