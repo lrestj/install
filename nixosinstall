@@ -20,9 +20,9 @@ while true; do
             REPO="zbook"
             cat << 'EOF'
 
-###########################
-# Zvolili jste Zbook...   #
-###########################
+############################
+# Zvolili jste Zbook ...   #
+############################
 
 EOF
             sleep 4
@@ -31,9 +31,9 @@ EOF
             REPO="probook"
             cat << 'EOF'
 
-#############################
-# Zvolili jste Probook...   #
-#############################
+##############################
+# Zvolili jste Probook ...   #
+##############################
 
 EOF
             sleep 4
@@ -42,9 +42,9 @@ EOF
             REPO="mirantb"
             cat << 'EOF'
 
-#############################
-# Zvolili jste Mirantb...   #
-#############################
+##############################
+# Zvolili jste Mirantb ...   #
+##############################
 
 EOF
             sleep 4
@@ -75,9 +75,9 @@ git remote -v
 
 cat << EOF
 
-######################################
-# Probíhá konfigurace $REPO...       #
-######################################
+###################################
+# Probíhá konfigurace $REPO ...   #
+###################################
 EOF
 
 git clone --bare -b nirinixos "https://github.com/lrestj/${REPO}.git" "$HOME/.cfg.git"
