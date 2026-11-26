@@ -97,7 +97,7 @@ cat << EOF
 ######################################
 EOF
 
-git clone --bare -b void "https://github.com/lrestj/{REPO}.git" "$HOME/.cfg.git"
+git clone --bare -b void "https://github.com/lrestj/${REPO}.git" "$HOME/.cfg.git"
 
 CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
 $CFG checkout -f
@@ -143,9 +143,10 @@ cat << 'EOF'
 ###########################
 EOF
 
-sudo cp -n /etc/fstab /etc/fstab.bak
+sudo cp -n /etc/fstab /etc/fstab.bak || true
 cat "$HOME/.dotfiles/nfs2fstab.txt" | sudo tee -a /etc/fstab > /dev/null
 sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
+sudo mkdir -p /nfs/Nas /nfs/FilmyNas /nfs/HudbaNas
 mkdir -p "$HOME"/{Dokumenty,Videa,Hudba,Stažené,Templates}
 
 git clone https://github.com/lrestj/install "$HOME/.dotfiles/install"
@@ -169,14 +170,14 @@ sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=2/' /etc/default/grub
 sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=true/' /etc/default/grub
 sudo update-grub
 
-bash "$HOME/.dotfiles/install/vim/vimbuild"
+bash "$HOME/.local/bin/vimbuild"
 
 cat << 'EOF'
 
 ############################
-# Po dokončení instalace  #
+# Po dokončení instalace   #
 # přepni na tty2           #
-# a spusť autologiVoid     #
+# a spusť autologinVoid    #
 ############################
 
 EOF
