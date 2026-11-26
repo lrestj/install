@@ -1,14 +1,12 @@
 #!/bin/bash
 set -e
 
-# 1. Ochrana proti spuštění celého skriptu přes sudo (rozbilo by to $HOME)
 if [ "$EUID" -eq 0 ]; then
     echo "CHYBA: Nespouštěj tento skript přes sudo!"
     echo "Spusť ho jako běžný uživatel: ./nazev_skriptu.sh"
     exit 1
 fi
 
-# 2. Vyžádání hesla hned na začátku a udržování sudo na pozadí
 sudo -v
 while true; do
     sudo -n true
@@ -18,13 +16,12 @@ done 2>/dev/null &
 
 cat << EOF
 ##################################
-# Na jaký počítač instalujete?  #
+# Na jaký počítač instalujete?   #
 # Zbook = 1                      #
 # Probook = 2                    #
 # Mirantb = 3                    #
 ##################################
 EOF
-
 while true; do
     read -r -n 1 -p "Vyberte 1/2/3: " answer
     echo ""
@@ -32,6 +29,7 @@ while true; do
         1 )
             REPO="zbook"
             cat << EOF
+
 ###########################
 #                         #
 # Zvolili jste Zbook...   #
@@ -44,6 +42,7 @@ EOF
         2 )
             REPO="probook"
             cat << EOF
+
 #############################
 #                           #
 # Zvolili jste Probook...   #
@@ -56,6 +55,7 @@ EOF
         3 )
             REPO="mirantb"
             cat << EOF
+
 #############################
 #                           #
 # Zvolili jste Mirantb...   #
@@ -72,12 +72,12 @@ EOF
 done
 
 cat << EOF
+
 #######################
 # Instalace balíčků   #
 #######################
 EOF
 sleep 2
-
 sudo apt -y install \
     alacritty baobab brightnessctl btop cliphist curl evince fastfetch fd-find ffmpeg \
     firewall-applet firewalld fish font-manager fonts-inter fonts-jetbrains-mono fzf \
@@ -96,9 +96,7 @@ mkdir -p Dokumenty Videa Hudba Stažené Templates Public
 
         cat << EOF
 ####################################
-#                                  #
 # Probíhá konfigurace ${REPO}      #
-#                                  #
 ####################################
 EOF
         git clone --bare -b swaydebian https://github.com/lrestj/${REPO}.git "$HOME/.cfg.git"
@@ -106,10 +104,12 @@ EOF
         ${CFG} checkout -f 
 
         cat << EOF
+
 ###################################
 # Konfigurace git repozitářů...   #
 ###################################
 EOF
+        cd $HOME
         git config --global user.email "rest@seznam.cz"
         git config --global user.name "LrestJ"
         ${CFG} remote remove origin
@@ -203,15 +203,11 @@ sudo apt -y remove ifupdown
 
 cat << EOF
 
-#####################
-# Konec instalace   #
-#####################
-
 ####################################
+# Konec instalace                  #
 # Restartovat do nového systému?   #
 ####################################
 EOF
-
 while true; do
     read -r -n 1 -p "Vyberte (A/N): " restart_answer
     echo ""
