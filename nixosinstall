@@ -1,89 +1,65 @@
 #!/bin/bash
 
-echo "############################"
-echo "#                          #"
-echo "#  Spouštím instalaci...   #"
-echo "#                          #"
-echo "############################"
-echo ".cfg.git" >> .gitignore &&
+set -e
 
-echo
-echo "##################################"
-echo "#  Na jaký počítač instalujete?  #"
-echo "#  Zbook = 1                     #"
-echo "#  Probook = 2                   #"
-echo "#  Mirantb = 3                   #"
-echo "##################################"
+cat << 'EOF'
+
+##################################
+# Na jaký počítač instalujete?   #
+# Zbook = 1                      #
+# Probook = 2                    #
+# Mirantb = 3                    #
+##################################
+EOF
 
 while true; do
-    read -r -n 1 -p " Vyberte 1/2/3: " answer
-    case $answer in
-        [1]* ) echo
-               echo "####################################"
-               echo "#                                  #"
-               echo "#  Probíhá konfigurace Zbook...    #"
-               echo "#                                  #"
-               echo "####################################"
-               git clone --bare -b nixos https://github.com/lrestj/zbook.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/zbook/ 
-               sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#zbook 
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/zbook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/zbook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
-        [2]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Probíhá konfigurace Probook...    #"
-               echo "#                                    #"
-               echo "######################################"
-               git clone --bare -b nixos https://github.com/lrestj/probook.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/probook/ 
-               sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#probook
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/probook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/probook.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
-        [3]* ) echo
-               echo "######################################"
-               echo "#                                    #"
-               echo "#  Probíhá konfigurace Mirantb...    #"
-               echo "#                                    #"
-               echo "######################################"
-               git clone --bare -b nixos https://github.com/lrestj/mirantb.git $HOME/.cfg.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME checkout -f &&
-               cp -fv /etc/nixos/hardware-configuration.nix $HOME/.dotfiles/nixos/hosts/mirantb/ 
-               sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#mirantb
-               echo
-               echo "###################################"
-               echo "#  Konfigurace git repozitáře...  #"
-               echo "###################################"
-               git config --global user.email "rest@seznam.cz"
-               git config --global user.name "LrestJ"
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/mirantb.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/mirantb.git
-               git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
-               break;;
-         * ) echo "Vyberte 1, 2, nebo 3";;
-     esac
+    read -r -n 1 -p "Vyberte 1/2/3: " answer
+    echo ""
+    case "$answer" in
+        1)
+            REPO="zbook"
+            cat << 'EOF'
+
+###########################
+#                         #
+# Zvolili jste Zbook...   #
+#                         #
+###########################
+
+EOF
+            sleep 4
+            break ;;
+        2)
+            REPO="probook"
+            cat << 'EOF'
+
+#############################
+#                           #
+# Zvolili jste Probook...   #
+#                           #
+#############################
+
+EOF
+            sleep 4
+            break ;;
+        3)
+            REPO="mirantb"
+            cat << 'EOF'
+
+#############################
+#                           #
+# Zvolili jste Mirantb...   #
+#                           #
+#############################
+
+EOF
+            sleep 4
+            break ;;
+        *)
+            echo "Vyberte 1, 2, nebo 3" ;;
+    esac
 done
+
   
 mkdir Dokumenty Videa Hudba Stažené Templates
 
@@ -96,14 +72,44 @@ git remote add github git@github.com:lrestj/install.git
 git remote add gitlab git@gitlab.com:lrestj/install.git
 git remote -v
 
-echo -e "\n"
-echo "############################"
-echo "#                          #" 
-echo "#  Konec instalace         #" 
-echo "#  Lze smazat /etc/nixos/  #" 
-echo "#                          #" 
-echo "############################"
-echo
+cat << EOF
+
+######################################
+#                                    #
+# Probíhá konfigurace $REPO...       #
+#                                    #
+######################################
+EOF
+
+git clone --bare -b nirinixos "https://github.com/lrestj/${REPO}.git" "$HOME/.cfg.git"
+
+CFG="git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME"
+$CFG checkout -f
+
+cat << 'EOF'
+
+###################################
+# Konfigurace git repozitáře...   #
+###################################
+EOF
+
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+$CFG remote remove origin
+$CFG remote add github "git@github.com:lrestj/${REPO}.git"
+$CFG remote add gitlab "git@gitlab.com:lrestj/${REPO}.git"
+$CFG remote -v
+
+
+cat << 'EOF'
+
+############################"
+#                          #" 
+#  Konec instalace         #" 
+#  Lze smazat /etc/nixos/  #" 
+#                          #" 
+############################"
+EOF
 
 while true; do
     read -r -n 1 -p "Restartovat do nové konfigurace? (A/N): " answer
