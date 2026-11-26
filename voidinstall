@@ -159,6 +159,7 @@ cat << 'EOF'
 ###########################
 EOF
 
+sleep 2
 sudo mkdir -p /etc/pipewire/pipewire.conf.d /etc/sysctl.d /etc/cron.weekly
 sudo cp -v "$HOME/.local/bin/fstrimdo" /etc/cron.weekly/
 sudo ln -sf /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
@@ -169,7 +170,6 @@ for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekl
     sudo ln -sf "/etc/sv/$s" /var/service/
 done
 
-sleep 2
 sudo powerprofilesctl set performance || true
 sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
 sudo rm -f /var/service/dhcpcd
@@ -194,15 +194,11 @@ while true; do
         [Aa]* )
             echo -e "\nRestartuji..."
             sleep 1
-            sudo loginctl reboot
-            break
-            ;;
+            sudo loginctl reboot ;;
         [Nn]* )
-            exit 0
-            ;;
+            exit 0;;
         * )
-            echo -e "\nVyberte A nebo N."
-            ;;
+            echo -e "\nVyberte A nebo N " ;;
     esac
 done
 
