@@ -21,9 +21,7 @@ while true; do
             cat << 'EOF'
 
 ###########################
-#                         #
 # Zvolili jste Zbook...   #
-#                         #
 ###########################
 
 EOF
@@ -34,9 +32,7 @@ EOF
             cat << 'EOF'
 
 #############################
-#                           #
 # Zvolili jste Probook...   #
-#                           #
 #############################
 
 EOF
@@ -47,9 +43,7 @@ EOF
             cat << 'EOF'
 
 #############################
-#                           #
 # Zvolili jste Mirantb...   #
-#                           #
 #############################
 
 EOF
@@ -63,6 +57,13 @@ done
   
 mkdir Dokumenty Videa Hudba Stažené Templates
 
+cat << 'EOF'
+##########################
+# Repozitář pro Install  #
+##########################
+
+EOF
+
 git clone https://github.com/lrestj/install $HOME/.dotfiles/install/
 cd $HOME/.dotfiles/install/
 git config --global user.email "rest@seznam.cz"
@@ -75,9 +76,7 @@ git remote -v
 cat << EOF
 
 ######################################
-#                                    #
 # Probíhá konfigurace $REPO...       #
-#                                    #
 ######################################
 EOF
 
@@ -91,25 +90,23 @@ sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#${REPO}
 
 cat << 'EOF'
 
-###################################
-# Konfigurace git repozitáře...   #
-###################################
+####################################
+# Konfigurace git repozitářů ...   #
+####################################
 EOF
 
 git config --global user.email "rest@seznam.cz"
 git config --global user.name "LrestJ"
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote remove origin
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add github git@github.com:lrestj/${REPO}.git
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote add gitlab git@gitlab.com:lrestj/${REPO}.git
-git --git-dir=$HOME/.cfg.git/ --work-tree=$HOME remote -v
+$CFG remote remove origin
+$CFG remote add github git@github.com:lrestj/${REPO}.git
+$CFG remote add gitlab git@gitlab.com:lrestj/${REPO}.git
+$CFG remote -v
 
 cat << 'EOF'
 
 ############################"
-#                          #" 
 #  Konec instalace         #" 
 #  Lze smazat /etc/nixos/  #" 
-#                          #" 
 ############################"
 EOF
 
