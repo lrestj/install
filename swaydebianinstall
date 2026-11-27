@@ -85,12 +85,13 @@ cd "$HOME"
 mkdir -p Dokumenty Videa Hudba Stažené Templates Public
 
         cat << EOF
+
 ####################################
 # Probíhá konfigurace ${REPO}      #
 ####################################
 EOF
         git clone --bare -b swaydebian https://github.com/lrestj/${REPO}.git "$HOME/.cfg.git"
-        CFG=git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME"
+        CFG="git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME""
         ${CFG} checkout -f 
 
         cat << EOF
@@ -175,7 +176,10 @@ cat << EOF
 #######################
 # Installing Yazi     #
 #######################
+EOF
 bash "$HOME/.local/bin/yazidebinstall"
+
+cat << EOF
 
 #######################
 # NetworkManager fix  #
@@ -183,8 +187,8 @@ bash "$HOME/.local/bin/yazidebinstall"
 EOF
 sleep 1
 sudo sed -i 's/managed=false/managed=true/g' /etc/NetworkManager/NetworkManager.conf
-sudo rm -rf /etc/network/
 sudo apt -y remove ifupdown
+sudo rm -rf /etc/network/
 
 cat << EOF
 
