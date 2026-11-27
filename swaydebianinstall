@@ -31,43 +31,33 @@ while true; do
             cat << EOF
 
 ###########################
-#                         #
 # Zvolili jste Zbook...   #
-#                         #
 ###########################
 EOF
             sleep 4
-            break
-            ;;
+            break ;;
         2 )
             REPO="probook"
             cat << EOF
 
 #############################
-#                           #
 # Zvolili jste Probook...   #
-#                           #
 #############################
 EOF
             sleep 4
-            break
-            ;;
+            break ;;
         3 )
             REPO="mirantb"
             cat << EOF
 
 #############################
-#                           #
 # Zvolili jste Mirantb...   #
-#                           #
 #############################
 EOF
             sleep 4
-            break
-            ;;
+            break ;;
         * )
-            echo -e "\nVyberte 1, 2, nebo 3"
-            ;;
+            echo -e "\nVyberte 1, 2, nebo 3" ;;
     esac
 done
 
@@ -216,14 +206,11 @@ while true; do
             echo -e "\nRestartuji..."
             sleep 1
             sudo reboot
-            break
-            ;;
+            break ;;
         [Nn]* )
-            exit 0
-            ;;
+            exit 0 ;;
         * )
-            echo -e "\nVyberte A nebo N."
-            ;;
+            echo -e "\nVyberte A nebo N." ;;
     esac
 done
 
