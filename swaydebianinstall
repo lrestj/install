@@ -90,32 +90,32 @@ mkdir -p Dokumenty Videa Hudba Stažené Templates Public
 # Probíhá konfigurace ${REPO}      #
 ####################################
 EOF
-        git clone --bare -b swaydebian https://github.com/lrestj/${REPO}.git "$HOME/.cfg.git"
-        CFG="git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME""
-        ${CFG} checkout -f 
+git clone --bare -b swaydebian https://github.com/lrestj/${REPO}.git "$HOME/.cfg.git"
+CFG="git --git-dir="$HOME/.cfg.git/" --work-tree="$HOME""
+${CFG} checkout -f 
 
-        cat << EOF
+cat << EOF
 
 ###################################
 # Konfigurace git repozitářů...   #
 ###################################
 EOF
-        cd $HOME
-        git config --global user.email "rest@seznam.cz"
-        git config --global user.name "LrestJ"
-        ${CFG} remote remove origin
-        ${CFG} remote add github git@github.com:lrestj/${REPO}.git
-        ${CFG} remote add gitlab git@gitlab.com:lrestj/${REPO}.git
-        ${CFG} remote -v
+cd $HOME
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+${CFG} remote remove origin
+${CFG} remote add github git@github.com:lrestj/${REPO}.git
+${CFG} remote add gitlab git@gitlab.com:lrestj/${REPO}.git
+${CFG} remote -v
 
-        git clone https://github.com/lrestj/install "$HOME/.dotfiles/install/"
-        cd "$HOME/.dotfiles/install/"
-        git config --global user.email "rest@seznam.cz"
-        git config --global user.name "LrestJ"
-        git remote remove origin
-        git remote add github git@github.com:lrestj/install.git
-        git remote add gitlab git@gitlab.com:lrestj/install.git
-        git remote -v
+git clone https://github.com/lrestj/install "$HOME/.dotfiles/install/"
+cd "$HOME/.dotfiles/install/"
+git config --global user.email "rest@seznam.cz"
+git config --global user.name "LrestJ"
+git remote remove origin
+git remote add github git@github.com:lrestj/install.git
+git remote add gitlab git@gitlab.com:lrestj/install.git
+git remote -v
 
 cat << EOF
 
