@@ -151,7 +151,7 @@ for s in dbus ufw NetworkManager power-profiles-daemon snooze-daily snooze-weekl
     sudo ln -sf "/etc/sv/$s" /var/service/
 done
 
-sudo sed -i 's/^FONT=.*/FONT=ter-222b/' /etc/rc.conf
+sudo sed -i 's/^#FONT=.*/FONT=ter-222b/' /etc/rc.conf
 sudo rm -f /var/service/dhcpcd
 sudo rm -f /var/service/wpa_supplicant
 
